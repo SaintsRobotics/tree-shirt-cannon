@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.Cannon;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,8 +23,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-  
-  public static OI m_oi;
+  public DifferentialDrive m_drivetrain;
+  public Cannon m_cannonZero;
+
+  public OI m_oi;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -34,7 +37,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-
+    m_drivetrain = new DifferentialDrive(RobotMap.leftWheels, RobotMap.rightWheels);
+    m_cannonZero = new Cannon(RobotMap.relayZero);
 
     m_oi = new OI();
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());

@@ -10,15 +10,15 @@ package frc.robot.commands;
 import java.util.function.BooleanSupplier;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 import frc.robot.subsystems.Cannon;
 
 
-public class CloseValve extends Command {
+public class CloseValve extends InstantCommand {
   private Cannon m_cannon;
-  private BooleanSupplier m_button;
 
-  public CloseValve(Cannon cannon, BooleanSupplier button) {
+  public CloseValve(Cannon cannon) {
     m_cannon = cannon;
     requires(m_cannon);
   }
@@ -31,9 +31,7 @@ public class CloseValve extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (m_button.getAsBoolean()) {
-      m_cannon.closeValve();
-    }
+    m_cannon.closeValve();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -42,14 +40,4 @@ public class CloseValve extends Command {
     return false;
   }
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-  }
-
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-  }
 }

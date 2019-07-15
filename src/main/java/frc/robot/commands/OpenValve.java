@@ -10,15 +10,15 @@ package frc.robot.commands;
 import java.util.function.BooleanSupplier;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 import frc.robot.subsystems.Cannon;
 
 
-public class OpenValve extends Command {
+public class OpenValve extends InstantCommand {
   private Cannon m_cannon;
-  private BooleanSupplier m_button;
 
-  public OpenValve(Cannon cannon, BooleanSupplier button) {
+  public OpenValve(Cannon cannon) {
     m_cannon = cannon;
     requires(m_cannon);
   }
@@ -31,25 +31,13 @@ public class OpenValve extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (m_button.getAsBoolean()) {
-      m_cannon.openValve();
-    }
+    m_cannon.openValve();
   }
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
+  // // Make this return true when this Command no longer needs to run execute()
+  // @Override
+  // protected boolean isFinished() {
+  //   return true;
+  // }
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-  }
-
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-  }
 }
