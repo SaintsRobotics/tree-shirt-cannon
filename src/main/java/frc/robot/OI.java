@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -44,7 +44,31 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-  public static XboxController xboxController = new XboxController(0);
+// CONSTANT VALUES
+  //use the getRawAxis(int) and getRawButton(int) methods inherited from GeneralHID
+  public static int LEFT_STICK_X = 0;
+  public static int LEFT_STICK_Y = 1;
+  public static int RIGHT_STICK_X = 4;
+  public static int RIGHT_STICK_Y = 5;
+  public static int LEFT_TRIGGER = 2;
+  public static int RIGHT_TRIGGER = 3;
+  public static int BUTTON_A = 1;
+  public static int BUTTON_B = 2;
+  public static int BUTTON_X = 3;
+  public static int BUTTON_Y = 4;
+  public static int BACK_BUTTON = 7;
+  public static int START_BUTTON = 8;
+  public static int LEFT_BUMBER = 5;
+  public static int RIGHT_BUMPER = 6;
+  public static int LEFT_STICK_BUTTON = 9;
+  public static int RIGHT_STICK_BUTTON = 10;
+
+  public Joystick xboxController = new Joystick(0);
+
+  private Button buttonA = new JoystickButton(xboxController, BUTTON_A);
+  private Button buttonB = new JoystickButton(xboxController, BUTTON_B);
+  private Button buttonX = new JoystickButton(xboxController, BUTTON_X);
+  private Button buttonY = new JoystickButton(xboxController, BUTTON_Y);
 
     
   
