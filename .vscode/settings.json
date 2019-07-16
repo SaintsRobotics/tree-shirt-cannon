@@ -9,5 +9,7 @@
     "bin/": true,
     ".classpath": true,
     ".project": true
-  }
+  },
+  "wpilib.online": true,
+  "editor.formatOnSave": true
 }
