@@ -7,9 +7,11 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Talon;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -29,15 +31,13 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
 
 // All fields are static.  Only those that need to be public are.
-  private static SpeedController frontLeft;
-  private static SpeedController midLeft;
-  private static SpeedController backLeft;
-  private static SpeedController frontRight;
-  private static SpeedController midRight;
-  private static SpeedController backRight;
+  private static SpeedController frontLeft = new Talon(0);
+  private static SpeedController backLeft = new Talon(1);
+  private static SpeedController frontRight = new Talon(2);
+  private static SpeedController backRight = new Talon(3);
 
-  public static SpeedControllerGroup leftWheels = new SpeedControllerGroup(frontLeft, midLeft, backLeft);
-  public static SpeedControllerGroup rightWheels = new SpeedControllerGroup(frontRight, midRight, backRight);
+  public static SpeedControllerGroup leftWheels = new SpeedControllerGroup(frontLeft, backLeft);
+  public static SpeedControllerGroup rightWheels = new SpeedControllerGroup(frontRight, backRight);
 
   public static Relay relayZero = new Relay(0);
   public static Relay relayOne = new Relay(1);

@@ -24,12 +24,12 @@ private Relay m_relay;
   public void initDefaultCommand() {
     // setDefaultCommand(new MySpecialCommand());
 
-    // There is no default command for the cannons.  If nothing is hapening, the subsystem doesn't do anything.
-    // On/off is managed in OI.java by the buttons.
+    
   }
 
   public void openValve() {
     // if valve is already open, nothing happens
+    
 
   }
 

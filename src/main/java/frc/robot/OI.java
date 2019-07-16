@@ -63,7 +63,7 @@ public class OI {
   public static int LEFT_STICK_BUTTON = 9;
   public static int RIGHT_STICK_BUTTON = 10;
 
-  public Joystick xboxController = new Joystick(0);
+  public static Joystick xboxController = new Joystick(0);
 
   private Button buttonA = new JoystickButton(xboxController, BUTTON_A);
   private Button buttonB = new JoystickButton(xboxController, BUTTON_B);

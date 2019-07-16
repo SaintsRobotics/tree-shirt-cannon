@@ -15,7 +15,7 @@ import frc.robot.Robot;
 import frc.robot.subsystems.Cannon;
 
 
-public class CloseValve extends InstantCommand {
+public class CloseValve extends Command {
   private Cannon m_cannon;
 
   public CloseValve(Cannon cannon) {
