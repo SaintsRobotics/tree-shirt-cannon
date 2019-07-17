@@ -7,7 +7,9 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.PWMTalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -18,6 +20,7 @@ import edu.wpi.first.wpilibj.Talon;
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
+ * 
  */
 public class RobotMap {
   // For example to map the left and right motors, you could define the
@@ -30,11 +33,16 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-// All fields are static.  Only those that need to be public are.
-  private static SpeedController frontLeft = new Talon(0);
-  private static SpeedController backLeft = new Talon(1);
-  private static SpeedController frontRight = new Talon(2);
-  private static SpeedController backRight = new Talon(3);
+  // All fields are static. Only those that need to be public are.
+  private static Talon frontLeft = new Talon(0);
+  private static Talon backLeft = new Talon(1);
+  private static Talon frontRight = new Talon(2);
+  private static Talon backRight = new Talon(3);
+
+  // private static WPI_TalonSRX frontLeft = new WPI_TalonSRX(0);
+  // private static WPI_TalonSRX backLeft = new WPI_TalonSRX(1);
+  // private static WPI_TalonSRX frontRight = new WPI_TalonSRX(2);
+  // private static WPI_TalonSRX backRight = new WPI_TalonSRX(3);
 
   public static SpeedControllerGroup leftWheels = new SpeedControllerGroup(frontLeft, backLeft);
   public static SpeedControllerGroup rightWheels = new SpeedControllerGroup(frontRight, backRight);
