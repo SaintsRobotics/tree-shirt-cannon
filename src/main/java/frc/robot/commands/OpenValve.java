@@ -7,15 +7,10 @@
 
 package frc.robot.commands;
 
-import java.util.function.BooleanSupplier;
-
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.Robot;
 import frc.robot.subsystems.Cannon;
 
-
-public class OpenValve extends InstantCommand {
+public class OpenValve extends Command {
   private Cannon m_cannon;
 
   public OpenValve(Cannon cannon) {
@@ -34,10 +29,10 @@ public class OpenValve extends InstantCommand {
     m_cannon.openValve();
   }
 
-  // // Make this return true when this Command no longer needs to run execute()
-  // @Override
-  // protected boolean isFinished() {
-  //   return true;
-  // }
+  // Make this return true when this Command no longer needs to run execute()
+  @Override
+  protected boolean isFinished() {
+    return true;
+  }
 
 }

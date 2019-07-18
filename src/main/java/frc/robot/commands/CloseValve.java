@@ -7,13 +7,8 @@
 
 package frc.robot.commands;
 
-import java.util.function.BooleanSupplier;
-
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.Robot;
 import frc.robot.subsystems.Cannon;
-
 
 public class CloseValve extends Command {
   private Cannon m_cannon;
@@ -21,6 +16,7 @@ public class CloseValve extends Command {
   public CloseValve(Cannon cannon) {
     m_cannon = cannon;
     requires(m_cannon);
+    this.setInterruptible(false);
   }
 
   // Called just before this Command runs the first time
