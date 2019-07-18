@@ -63,6 +63,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    m_cannonZero.telemetry();
+    m_cannonOne.telemetry();
+    m_cannonTwo.telemetry();
+    m_cannonThree.telemetry();
   }
 
   /**

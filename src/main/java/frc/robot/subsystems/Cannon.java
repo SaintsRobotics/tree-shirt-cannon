@@ -11,11 +11,14 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.CloseValve;
 
 public class Cannon extends Subsystem {
   private static final double ON_DURATION = 1; // the minimum number of seconds the relay needs to be powered to ensure
                                                // it becomes fully opened or closed
+
+  private String m_name;
   private Relay m_relay;
   private State m_state;
   private Timer m_timer = new Timer();
@@ -27,7 +30,8 @@ public class Cannon extends Subsystem {
   // set the environment to the requirements for that state, then set the state
   // itself
 
-  public Cannon(Relay relay) {
+  public Cannon(String name, Relay relay) {
+    this.m_name = name;
     this.m_relay = relay;
     this.m_timer.start();
     this.m_state = State.START;
@@ -103,6 +107,12 @@ public class Cannon extends Subsystem {
       break;
 
     }
+  }
+
+  public void telemetry() {
+    SmartDashboard.putString(this.m_name + " relay state", this.m_relay.get().name());
+    SmartDashboard.putString(this.m_name + "cannon state", this.m_state.name());
+    SmartDashboard.putNumber(this.m_name + "relay time", this.m_relayStartTime);
   }
 
 }
