@@ -14,18 +14,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.CloseValve;
 
 public class Cannon extends Subsystem {
-  private static final double OPEN_DURATION = 1;
+  private static final double ON_DURATION = 1; // the minimum number of seconds the relay needs to be powered to ensure
+                                               // it becomes fully opened or closed
   private Relay m_relay;
   private State m_state;
-  private Timer m_timer;
-  private double m_relayOnTime;
+  private Timer m_timer = new Timer();
+  private double m_relayStartTime; // the time at which the relay was turned to forward or reverse (not off)
 
   private enum State {
     START, OPENING, OPENED, CLOSING, CLOSED
   }
+  // set the environment to the requirements for that state, then set the state
+  // itself
 
   public Cannon(Relay relay) {
     this.m_relay = relay;
+    this.m_timer.start();
     this.m_state = State.START;
   }
 
@@ -34,6 +38,8 @@ public class Cannon extends Subsystem {
     setDefaultCommand(new CloseValve(this));
   }
 
+  // remember, this is being called continuously as long as the button is being
+  // held
   public void openValve() {
     switch (this.m_state) {
     case START:
@@ -41,22 +47,62 @@ public class Cannon extends Subsystem {
       break;
 
     case OPENING:
-      if (m_relayOnTime > OPEN_DURATION) {
+      if (this.m_timer.get() - this.m_relayStartTime > ON_DURATION) {
+        this.m_relay.set(Value.kOff);
         this.m_state = State.OPENED;
-      } else {
-        this.m_relay.set(Value.kForward);
       }
       break;
 
     case OPENED:
+      break;
 
+    case CLOSING:
+      this.m_relay.set(Value.kOff); // should turn relay off before switching directions. (deduced from tshirtcannon
+                                    // repo)
+      this.m_relay.set(Value.kForward);
+      this.m_relayStartTime = this.m_timer.get();
+      this.m_state = State.OPENING;
+      break;
+
+    case CLOSED:
+      this.m_relay.set(Value.kForward);
+      this.m_relayStartTime = this.m_timer.get();
+      this.m_state = State.OPENING;
+      break;
     }
 
   }
 
   public void closeValve() {
-    // if valve is already closed, nothing happens
+    switch (this.m_state) {
+    case START:
+      this.m_state = State.CLOSING;
+      break;
 
+    case OPENING:
+      if (this.m_timer.get() - this.m_relayStartTime > ON_DURATION) {
+        this.m_relay.set(Value.kOff);
+        this.m_state = State.OPENED;
+      }
+      break;
+
+    case OPENED:
+      this.m_relay.set(Value.kReverse);
+      this.m_relayStartTime = this.m_timer.get();
+      this.m_state = State.CLOSING;
+      break;
+
+    case CLOSING:
+      if (this.m_timer.get() - this.m_relayStartTime > ON_DURATION) {
+        this.m_relay.set(Value.kOff);
+        this.m_state = State.CLOSED;
+      }
+      break;
+
+    case CLOSED:
+      break;
+
+    }
   }
 
 }

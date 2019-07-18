@@ -10,6 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.OpenValve;
+import frc.robot.Robot;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -44,8 +46,9 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-// CONSTANT VALUES
-  //use the getRawAxis(int) and getRawButton(int) methods inherited from GeneralHID
+  // CONSTANT VALUES
+  // use the getRawAxis(int) and getRawButton(int) methods inherited from
+  // GeneralHID
   public static int LEFT_STICK_X = 0;
   public static int LEFT_STICK_Y = 1;
   public static int RIGHT_STICK_X = 4;
@@ -70,6 +73,11 @@ public class OI {
   private Button buttonX = new JoystickButton(xboxController, BUTTON_X);
   private Button buttonY = new JoystickButton(xboxController, BUTTON_Y);
 
-    
-  
+  public OI() {
+    buttonA.whileHeld(new OpenValve(Robot.m_cannonZero));
+    buttonB.whileHeld(new OpenValve(Robot.m_cannonOne));
+    buttonX.whileHeld(new OpenValve(Robot.m_cannonTwo));
+    buttonY.whileHeld(new OpenValve(Robot.m_cannonThree));
+  }
+
 }
