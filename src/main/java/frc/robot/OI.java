@@ -76,8 +76,8 @@ public class OI {
   public OI() {
     buttonA.whileHeld(new OpenValve(Robot.m_cannonZero));
     buttonB.whileHeld(new OpenValve(Robot.m_cannonOne));
-    buttonX.whileHeld(new OpenValve(Robot.m_cannonTwo));
-    buttonY.whileHeld(new OpenValve(Robot.m_cannonThree));
+    // buttonX.whileHeld(new OpenValve(Robot.m_cannonTwo));
+    // buttonY.whileHeld(new OpenValve(Robot.m_cannonThree));
   }
 
 }

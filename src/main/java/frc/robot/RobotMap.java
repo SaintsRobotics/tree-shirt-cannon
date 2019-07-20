@@ -49,7 +49,7 @@ public class RobotMap {
 
   public static Relay relayZero = new Relay(0);
   public static Relay relayOne = new Relay(1);
-  public static Relay relayTwo = new Relay(2);
-  public static Relay relayThree = new Relay(3);
+  // public static Relay relayTwo = new Relay(2);
+  // public static Relay relayThree = new Relay(3);
 
 }

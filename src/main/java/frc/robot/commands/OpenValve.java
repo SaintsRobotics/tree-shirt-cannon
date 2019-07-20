@@ -16,6 +16,7 @@ public class OpenValve extends Command {
   public OpenValve(Cannon cannon) {
     m_cannon = cannon;
     requires(m_cannon);
+    setInterruptible(false);
   }
 
   // Called just before this Command runs the first time

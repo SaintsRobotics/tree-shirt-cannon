@@ -80,6 +80,8 @@ public class Cannon extends Subsystem {
   public void closeValve() {
     switch (this.m_state) {
     case START:
+      this.m_relay.set(Value.kReverse);
+      this.m_relayStartTime = this.m_timer.get();
       this.m_state = State.CLOSING;
       break;
 
@@ -111,8 +113,8 @@ public class Cannon extends Subsystem {
 
   public void telemetry() {
     SmartDashboard.putString(this.m_name + " relay state", this.m_relay.get().name());
-    SmartDashboard.putString(this.m_name + "cannon state", this.m_state.name());
-    SmartDashboard.putNumber(this.m_name + "relay time", this.m_relayStartTime);
+    SmartDashboard.putNumber(this.m_name + " timer", this.m_timer.get());
+    SmartDashboard.putString(this.m_name + " cannon state", this.m_state.name());
   }
 
 }

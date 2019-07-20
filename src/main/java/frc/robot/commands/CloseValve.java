@@ -16,7 +16,6 @@ public class CloseValve extends Command {
   public CloseValve(Cannon cannon) {
     m_cannon = cannon;
     requires(m_cannon);
-    this.setInterruptible(false);
   }
 
   // Called just before this Command runs the first time

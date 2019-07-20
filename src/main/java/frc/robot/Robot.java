@@ -43,13 +43,13 @@ public class Robot extends TimedRobot {
     m_drivetrain = new Drivetrain(RobotMap.leftWheels, RobotMap.rightWheels);
     m_cannonZero = new Cannon("zero", RobotMap.relayZero);
     m_cannonOne = new Cannon("one", RobotMap.relayOne);
-    m_cannonTwo = new Cannon("two", RobotMap.relayTwo);
-    m_cannonThree = new Cannon("three", RobotMap.relayThree);
+    // m_cannonTwo = new Cannon("two", RobotMap.relayTwo);
+    // m_cannonThree = new Cannon("three", RobotMap.relayThree);
 
     m_oi = new OI();
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    // SmartDashboard.putData("Auto mode", m_chooser);
   }
 
   /**
@@ -65,8 +65,8 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     m_cannonZero.telemetry();
     m_cannonOne.telemetry();
-    m_cannonTwo.telemetry();
-    m_cannonThree.telemetry();
+    // m_cannonTwo.telemetry();
+    // m_cannonThree.telemetry();
   }
 
   /**
