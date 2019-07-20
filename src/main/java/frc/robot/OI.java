@@ -74,8 +74,8 @@ public class OI {
   private Button buttonY = new JoystickButton(xboxController, BUTTON_Y);
 
   public OI() {
-    buttonA.whileHeld(new OpenValve(Robot.m_cannonZero));
-    buttonB.whileHeld(new OpenValve(Robot.m_cannonOne));
+    buttonA.whileHeld(new OpenValve(Robot.m_cannonZero, () -> xboxController.getRawButton(LEFT_BUMBER)));
+    buttonB.whileHeld(new OpenValve(Robot.m_cannonOne, () -> xboxController.getRawButton(LEFT_BUMBER)));
     // buttonX.whileHeld(new OpenValve(Robot.m_cannonTwo));
     // buttonY.whileHeld(new OpenValve(Robot.m_cannonThree));
   }
