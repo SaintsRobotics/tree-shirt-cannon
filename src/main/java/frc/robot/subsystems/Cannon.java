@@ -24,6 +24,12 @@ public class Cannon extends Subsystem {
   private Timer m_timer = new Timer();
   private double m_relayStartTime; // the time at which the relay was turned to forward or reverse (not off)
 
+  // Value.kForward closes the valve and Value.kReverse opens it
+  // definitely not very intuitive
+  private Value m_closeValve = Value.kForward;
+  private Value m_openValve = Value.kReverse;
+  private Value m_off = Value.kOff;
+
   private enum State {
     START, OPENING, OPENED, CLOSING, CLOSED
   }
@@ -46,67 +52,68 @@ public class Cannon extends Subsystem {
   // held
   public void openValve() {
     switch (this.m_state) {
-    case START:
-      this.closeValve(); // if open is called before the *default command* runs, the valve won't open
-      break;
+      case START: // in case you enable the bot while holding down the fire button
+        this.closeValve(); // if open is called before the *default command* runs, the valve won't open
+        break;
 
-    case OPENING:
-      if (this.m_timer.get() - this.m_relayStartTime > ON_DURATION) {
-        this.m_relay.set(Value.kOff);
-        this.m_state = State.OPENED;
-      }
-      break;
+      case OPENING:
+        if (this.m_timer.get() - this.m_relayStartTime > ON_DURATION) {
+          this.m_relay.set(m_off);
+          this.m_state = State.OPENED;
+        }
+        break;
 
-    case OPENED:
-      break;
+      case OPENED:
+        break;
 
-    case CLOSING:
-      this.m_relay.set(Value.kOff); // should turn relay off before switching directions. (deduced from tshirtcannon
-                                    // repo)
-      this.m_relay.set(Value.kForward);
-      this.m_relayStartTime = this.m_timer.get();
-      this.m_state = State.OPENING;
-      break;
+      case CLOSING:
+        this.m_relay.set(m_off); // should turn relay off before switching directions. (deduced from tshirtcannon
+                                 // repo)
+        this.m_relay.set(m_openValve);
+        this.m_relayStartTime = this.m_timer.get();
+        this.m_state = State.OPENING;
+        break;
 
-    case CLOSED:
-      this.m_relay.set(Value.kForward);
-      this.m_relayStartTime = this.m_timer.get();
-      this.m_state = State.OPENING;
-      break;
+      case CLOSED:
+        this.m_relay.set(m_openValve);
+        this.m_relayStartTime = this.m_timer.get();
+        this.m_state = State.OPENING;
+        break;
     }
 
   }
 
   public void closeValve() {
     switch (this.m_state) {
-    case START:
-      this.m_relay.set(Value.kReverse);
-      this.m_relayStartTime = this.m_timer.get();
-      this.m_state = State.CLOSING;
-      break;
+      case START: // same code as case OPENED because we're assuming that the valve is opened when
+                  // it first starts
+        this.m_relay.set(m_closeValve);
+        this.m_relayStartTime = this.m_timer.get();
+        this.m_state = State.CLOSING;
+        break;
 
-    case OPENING:
-      if (this.m_timer.get() - this.m_relayStartTime > ON_DURATION) {
-        this.m_relay.set(Value.kOff);
-        this.m_state = State.OPENED;
-      }
-      break;
+      case OPENING:
+        if (this.m_timer.get() - this.m_relayStartTime > ON_DURATION) {
+          this.m_relay.set(m_off);
+          this.m_state = State.OPENED;
+        }
+        break;
 
-    case OPENED:
-      this.m_relay.set(Value.kReverse);
-      this.m_relayStartTime = this.m_timer.get();
-      this.m_state = State.CLOSING;
-      break;
+      case OPENED:
+        this.m_relay.set(m_closeValve);
+        this.m_relayStartTime = this.m_timer.get();
+        this.m_state = State.CLOSING;
+        break;
 
-    case CLOSING:
-      if (this.m_timer.get() - this.m_relayStartTime > ON_DURATION) {
-        this.m_relay.set(Value.kOff);
-        this.m_state = State.CLOSED;
-      }
-      break;
+      case CLOSING:
+        if (this.m_timer.get() - this.m_relayStartTime > ON_DURATION) {
+          this.m_relay.set(m_off);
+          this.m_state = State.CLOSED;
+        }
+        break;
 
-    case CLOSED:
-      break;
+      case CLOSED:
+        break;
 
     }
   }
