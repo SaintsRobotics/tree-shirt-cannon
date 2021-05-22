@@ -10,31 +10,38 @@ import frc.robot.subsystems.CannonSubsystem;
 public class ShootCommand extends Command {
   private CannonSubsystem m_cannon;
 
-  /** Creates a new ShootCommand. */
   public ShootCommand(CannonSubsystem cannon) {
-    // Use addRequirements() here to declare subsystem dependencies.
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
     m_cannon = cannon;
     requires(m_cannon);
   }
 
-  // Called when the command is initially scheduled.
+  // Called just before this Command runs the first time
   @Override
-  public void initialize() {
+  protected void initialize() {
     m_cannon.Shoot();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  // Called repeatedly when this Command is scheduled to run
   @Override
-  public void execute() {
+  protected void execute() {
   }
 
-  // Called once the command ends or is interrupted.
-  // @Override
-  // public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
+  // Make this return true when this Command no longer needs to run execute()
   @Override
-  public boolean isFinished() {
+  protected boolean isFinished() {
     return false;
+  }
+
+  // Called once after isFinished returns true
+  @Override
+  protected void end() {
+  }
+
+  // Called when another command which requires one or more of the same
+  // subsystems is scheduled to run
+  @Override
+  protected void interrupted() {
   }
 }
