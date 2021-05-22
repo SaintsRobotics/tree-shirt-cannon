@@ -23,8 +23,11 @@ public class Cannon extends Subsystem {
   private State m_state;
   private Timer m_timer = new Timer();
   private double m_relayStartTime; // the time at which the relay was turned to forward or reverse (not off)
-  private Value m_reverse = Value.kReverse;
-  private Value m_forward = Value.kForward;
+
+  // Value.kForward closes the valve and Value.kReverse opens it
+  // definitely not very intuitive
+  private Value m_closeValve = Value.kForward;
+  private Value m_openValve = Value.kReverse;
   private Value m_off = Value.kOff;
 
   private enum State {
@@ -66,13 +69,13 @@ public class Cannon extends Subsystem {
       case CLOSING:
         this.m_relay.set(m_off); // should turn relay off before switching directions. (deduced from tshirtcannon
                                  // repo)
-        this.m_relay.set(m_forward);
+        this.m_relay.set(m_openValve);
         this.m_relayStartTime = this.m_timer.get();
         this.m_state = State.OPENING;
         break;
 
       case CLOSED:
-        this.m_relay.set(m_forward);
+        this.m_relay.set(m_openValve);
         this.m_relayStartTime = this.m_timer.get();
         this.m_state = State.OPENING;
         break;
@@ -84,7 +87,7 @@ public class Cannon extends Subsystem {
     switch (this.m_state) {
       case START: // same code as case OPENED because we're assuming that the valve is opened when
                   // it first starts
-        this.m_relay.set(m_reverse);
+        this.m_relay.set(m_closeValve);
         this.m_relayStartTime = this.m_timer.get();
         this.m_state = State.CLOSING;
         break;
@@ -97,7 +100,7 @@ public class Cannon extends Subsystem {
         break;
 
       case OPENED:
-        this.m_relay.set(m_reverse);
+        this.m_relay.set(m_closeValve);
         this.m_relayStartTime = this.m_timer.get();
         this.m_state = State.CLOSING;
         break;
