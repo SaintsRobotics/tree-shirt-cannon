@@ -14,14 +14,13 @@ public class CannonSubsystem extends Subsystem {
   // becomes fully opened or closed
   private static final double ON_DURATION = 1;
 
-  private Relay m_relay;
-
   // Value.kForward closes the valve and Value.kReverse opens it
   // definitely not very intuitive
-  private Value m_closeValve = Value.kForward;
-  private Value m_openValve = Value.kReverse;
-  private Value m_off = Value.kOff;
+  private static final Value CLOSE_VALVE = Value.kForward;
+  private static final Value OPEN_VALVE = Value.kReverse;
+  private static final Value OFF = Value.kOff;
 
+  private Relay m_relay;
   private Timer m_timer;
 
   /** Creates a new CannonSubsystem2. */
@@ -29,7 +28,7 @@ public class CannonSubsystem extends Subsystem {
     m_relay = relay;
 
     // close the valve when first constructed
-    m_relay.set(m_closeValve);
+    m_relay.set(CLOSE_VALVE);
 
     m_timer = new Timer();
     m_timer.start();
@@ -39,9 +38,9 @@ public class CannonSubsystem extends Subsystem {
   public void periodic() {
     // This method will be called once per scheduler run
     if (m_timer.get() > ON_DURATION * 2) {
-      m_relay.set(m_off);
+      m_relay.set(OFF);
     } else if (m_timer.get() > ON_DURATION) {
-      m_relay.set(m_closeValve);
+      m_relay.set(CLOSE_VALVE);
     }
   }
 
@@ -52,6 +51,6 @@ public class CannonSubsystem extends Subsystem {
 
   public void Shoot() {
     m_timer.reset();
-    m_relay.set(m_openValve);
+    m_relay.set(OPEN_VALVE);
   }
 }
