@@ -10,7 +10,7 @@ import frc.robot.commands.DrivetrainCommand;
 public class Drivetrain extends Subsystem {
     private DifferentialDrive m_differentialDrive;
     private static final double SPEED_REDUCER = 0.75;
-    private static final double BOOST_COEFECIENT = .9;
+    private static final double BOOST_COEFFICIENT = .9;
 
     public Drivetrain(SpeedController leftMotor, SpeedController rightMotor) {
         m_differentialDrive = new DifferentialDrive(leftMotor, rightMotor);
@@ -22,8 +22,8 @@ public class Drivetrain extends Subsystem {
             moveSpeed *= SPEED_REDUCER;
             rotateSpeed *= SPEED_REDUCER;
         } else {
-            moveSpeed *= BOOST_COEFECIENT;
-            rotateSpeed *= BOOST_COEFECIENT;
+            moveSpeed *= BOOST_COEFFICIENT;
+            rotateSpeed *= BOOST_COEFFICIENT;
         }
 
         SmartDashboard.putNumber("move speed", moveSpeed);
