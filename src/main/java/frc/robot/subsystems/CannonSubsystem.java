@@ -23,7 +23,7 @@ public class CannonSubsystem extends Subsystem {
   private Relay m_relay;
   private Timer m_timer;
 
-  /** Creates a new CannonSubsystem2. */
+  /** Creates a new CannonSubsystem. */
   public CannonSubsystem(Relay relay) {
     m_relay = relay;
 
@@ -36,7 +36,6 @@ public class CannonSubsystem extends Subsystem {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
     if (m_timer.get() > ON_DURATION * 2) {
       m_relay.set(OFF);
     } else if (m_timer.get() > ON_DURATION) {
