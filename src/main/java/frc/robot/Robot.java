@@ -11,8 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.Cannon;
+import frc.robot.subsystems.CannonSubsystem;
 import frc.robot.subsystems.Drivetrain;
 
 /**
@@ -24,10 +23,8 @@ import frc.robot.subsystems.Drivetrain;
  */
 public class Robot extends TimedRobot {
   public static Drivetrain m_drivetrain;
-  public static Cannon m_cannonZero;
-  public static Cannon m_cannonOne;
-  public static Cannon m_cannonTwo;
-  public static Cannon m_cannonThree;
+  public static CannonSubsystem m_leftCannon;
+  public static CannonSubsystem m_rightCannon;
 
   public OI m_oi;
 
@@ -41,15 +38,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_drivetrain = new Drivetrain(RobotMap.leftWheels, RobotMap.rightWheels);
-    m_cannonZero = new Cannon("zero", RobotMap.relayZero);
-    m_cannonOne = new Cannon("one", RobotMap.relayOne);
-    // m_cannonTwo = new Cannon("two", RobotMap.relayTwo);
-    // m_cannonThree = new Cannon("three", RobotMap.relayThree);
+    m_leftCannon = new CannonSubsystem(RobotMap.leftRelay);
+    m_rightCannon = new CannonSubsystem(RobotMap.rightRelay);
 
     m_oi = new OI();
-    // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
-    // SmartDashboard.putData("Auto mode", m_chooser);
   }
 
   /**
@@ -63,10 +55,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    m_cannonZero.telemetry();
-    m_cannonOne.telemetry();
-    // m_cannonTwo.telemetry();
-    // m_cannonThree.telemetry();
+    
   }
 
   /**

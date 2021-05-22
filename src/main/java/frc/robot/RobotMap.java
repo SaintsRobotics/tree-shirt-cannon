@@ -7,11 +7,7 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 
@@ -39,17 +35,9 @@ public class RobotMap {
   private static Talon frontRight = new Talon(2);
   private static Talon backRight = new Talon(3);
 
-  // private static WPI_TalonSRX frontLeft = new WPI_TalonSRX(0);
-  // private static WPI_TalonSRX backLeft = new WPI_TalonSRX(1);
-  // private static WPI_TalonSRX frontRight = new WPI_TalonSRX(2);
-  // private static WPI_TalonSRX backRight = new WPI_TalonSRX(3);
-
   public static SpeedControllerGroup leftWheels = new SpeedControllerGroup(frontLeft, backLeft);
   public static SpeedControllerGroup rightWheels = new SpeedControllerGroup(frontRight, backRight);
 
-  public static Relay relayZero = new Relay(0);
-  public static Relay relayOne = new Relay(1);
-  // public static Relay relayTwo = new Relay(2);
-  // public static Relay relayThree = new Relay(3);
-
+  public static Relay leftRelay = new Relay(0);
+  public static Relay rightRelay = new Relay(1);
 }
