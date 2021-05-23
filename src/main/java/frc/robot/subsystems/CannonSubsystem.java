@@ -48,7 +48,7 @@ public class CannonSubsystem extends Subsystem {
 
   }
 
-  public void Shoot() {
+  public void shoot() {
     m_timer.reset();
     m_relay.set(OPEN_VALVE);
   }
