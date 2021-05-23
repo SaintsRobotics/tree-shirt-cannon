@@ -4,12 +4,14 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.subsystems.CannonSubsystem;
 
-public class ShootCommand extends Command {
+/** Add your docs here. */
+public class ShootCommand extends InstantCommand {
   private CannonSubsystem m_cannon;
 
+  /** Add your docs here. */
   public ShootCommand(CannonSubsystem cannon) {
     m_cannon = cannon;
     requires(m_cannon);
@@ -17,23 +19,6 @@ public class ShootCommand extends Command {
 
   @Override
   protected void initialize() {
-    m_cannon.Shoot();
-  }
-
-  @Override
-  protected void execute() {
-  }
-
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
-
-  @Override
-  protected void end() {
-  }
-
-  @Override
-  protected void interrupted() {
+    m_cannon.shoot();
   }
 }
