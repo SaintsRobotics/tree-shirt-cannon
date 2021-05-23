@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -69,9 +71,12 @@ public class OI {
 
   private Button buttonA = new JoystickButton(xboxController, BUTTON_A);
   private Button buttonB = new JoystickButton(xboxController, BUTTON_B);
+  private Button leftBumper = new JoystickButton(xboxController, LEFT_BUMPER);
+
+  private BooleanSupplier safetySupplier = () -> leftBumper.get();
 
   public OI() {
-    buttonA.whenPressed(new ShootCommand(Robot.m_leftCannon));
-    buttonB.whenPressed(new ShootCommand(Robot.m_rightCannon));
+    buttonA.whenPressed(new ShootCommand(Robot.m_leftCannon, safetySupplier));
+    buttonB.whenPressed(new ShootCommand(Robot.m_rightCannon, safetySupplier));
   }
 }
