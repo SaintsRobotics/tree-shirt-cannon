@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.commands.DrivetrainCommand;
 
-public class Drivetrain extends Subsystem {
+public class DrivetrainSubsystem extends Subsystem {
     private DifferentialDrive m_differentialDrive;
     private static final double SPEED_REDUCER = 0.75;
     private static final double BOOST_COEFFICIENT = .9;
 
-    public Drivetrain(SpeedController leftMotor, SpeedController rightMotor) {
+    public DrivetrainSubsystem(SpeedController leftMotor, SpeedController rightMotor) {
         m_differentialDrive = new DifferentialDrive(leftMotor, rightMotor);
     }
 

@@ -2,12 +2,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
-import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class DrivetrainCommand extends Command {
-    private Drivetrain m_drivetrain;
+    private DrivetrainSubsystem m_drivetrain;
 
-    public DrivetrainCommand(Drivetrain drivetrain) {
+    public DrivetrainCommand(DrivetrainSubsystem drivetrain) {
         m_drivetrain = drivetrain;
         requires(m_drivetrain);
     }
