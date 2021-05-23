@@ -38,8 +38,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_drivetrain = new DrivetrainSubsystem(RobotMap.leftWheels, RobotMap.rightWheels);
-    m_leftCannon = new CannonSubsystem(RobotMap.leftRelay);
-    m_rightCannon = new CannonSubsystem(RobotMap.rightRelay);
+    m_leftCannon = new CannonSubsystem("Left Cannon", RobotMap.leftRelay);
+    m_rightCannon = new CannonSubsystem("Right Cannon", RobotMap.rightRelay);
 
     m_oi = new OI();
   }
