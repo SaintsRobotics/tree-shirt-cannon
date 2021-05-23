@@ -21,13 +21,12 @@ public class CannonSubsystem extends Subsystem {
   private static final Value OPEN_VALVE = Value.kReverse;
   private static final Value OFF = Value.kOff;
 
-  private String m_name;
   private Relay m_relay;
   private Timer m_timer;
 
   /** Creates a new CannonSubsystem. */
   public CannonSubsystem(String name, Relay relay) {
-    m_name = name;
+    super(name);
     m_relay = relay;
     m_timer = new Timer();
     m_timer.start();
@@ -41,8 +40,8 @@ public class CannonSubsystem extends Subsystem {
       m_relay.set(CLOSE_VALVE);
     }
 
-    SmartDashboard.putString(m_name + " State", m_relay.get().toString());
-    SmartDashboard.putNumber(m_name + " Timer Value", m_timer.get());
+    SmartDashboard.putString(super.getName() + " State", m_relay.get().toString());
+    SmartDashboard.putNumber(super.getName() + " Timer Value", m_timer.get());
   }
 
   @Override
