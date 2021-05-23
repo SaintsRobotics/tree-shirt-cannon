@@ -26,10 +26,6 @@ public class CannonSubsystem extends Subsystem {
   /** Creates a new CannonSubsystem. */
   public CannonSubsystem(Relay relay) {
     m_relay = relay;
-
-    // close the valve when first constructed
-    m_relay.set(CLOSE_VALVE);
-
     m_timer = new Timer();
     m_timer.start();
   }
