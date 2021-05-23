@@ -34,6 +34,7 @@ public class CannonSubsystem extends Subsystem {
 
   @Override
   public void periodic() {
+    // closes the valve then turns off the relay after shooting
     if (m_timer.get() > ON_DURATION * 2) {
       m_relay.set(OFF);
     } else if (m_timer.get() > ON_DURATION) {
