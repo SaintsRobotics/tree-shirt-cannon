@@ -8,12 +8,18 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.subsystems.CannonSubsystem;
 
-/** Add your docs here. */
+/** Shoots the {@link CannonSubsystem}. */
 public class ShootCommand extends InstantCommand {
   private CannonSubsystem m_cannon;
   private BooleanSupplier m_safetySupplier;
 
-  /** Add your docs here. */
+  /**
+   * Creates a new {@link ShootCommand}.
+   * 
+   * @param cannon         the {@link CannonSubsystem} this command requires
+   * @param safetySupplier the safety button that prevents the
+   *                       {@link CannonSubsystem} from firing when not held
+   */
   public ShootCommand(CannonSubsystem cannon, BooleanSupplier safetySupplier) {
     super(cannon);
     m_cannon = cannon;

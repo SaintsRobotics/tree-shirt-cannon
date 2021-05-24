@@ -11,20 +11,30 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CannonSubsystem extends Subsystem {
-  // the minimum number of seconds the relay needs to be powered to ensure it
-  // becomes fully opened or closed
+  /**
+   * The number of seconds the {@link Relay} needs to be powered to ensure it
+   * becomes fully opened or closed.
+   */
   private static final double ON_DURATION = 1;
 
-  // Value.kForward closes the valve and Value.kReverse opens it
-  // definitely not very intuitive
+  /** Closes the valve by running the {@link Relay} forward. */
   private static final Value CLOSE_VALVE = Value.kForward;
+
+  /** Opens the valve by running the {@link Relay} in reverse. */
   private static final Value OPEN_VALVE = Value.kReverse;
+
+  /** Turns the {@link Relay} off. */
   private static final Value OFF = Value.kOff;
 
   private Relay m_relay;
   private Timer m_timer;
 
-  /** Creates a new CannonSubsystem. */
+  /**
+   * Creates a new {@link CannonSubsystem}.
+   * 
+   * @param name  the name of the {@link CannonSubsystem}
+   * @param relay the {@link Relay} that opens and closes the valve
+   */
   public CannonSubsystem(String name, Relay relay) {
     super(name);
     m_relay = relay;
