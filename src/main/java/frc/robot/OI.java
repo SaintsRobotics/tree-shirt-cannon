@@ -7,11 +7,12 @@
 
 package frc.robot;
 
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.OpenValve;
-import frc.robot.Robot;
+import frc.robot.commands.ShootCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -61,7 +62,7 @@ public class OI {
   public static int BUTTON_Y = 4;
   public static int BACK_BUTTON = 7;
   public static int START_BUTTON = 8;
-  public static int LEFT_BUMBER = 5;
+  public static int LEFT_BUMPER = 5;
   public static int RIGHT_BUMPER = 6;
   public static int LEFT_STICK_BUTTON = 9;
   public static int RIGHT_STICK_BUTTON = 10;
@@ -70,14 +71,12 @@ public class OI {
 
   private Button buttonA = new JoystickButton(xboxController, BUTTON_A);
   private Button buttonB = new JoystickButton(xboxController, BUTTON_B);
-  private Button buttonX = new JoystickButton(xboxController, BUTTON_X);
-  private Button buttonY = new JoystickButton(xboxController, BUTTON_Y);
+  private Button leftBumper = new JoystickButton(xboxController, LEFT_BUMPER);
+
+  private BooleanSupplier safetySupplier = () -> leftBumper.get();
 
   public OI() {
-    buttonA.whileHeld(new OpenValve(Robot.m_cannonZero, () -> xboxController.getRawButton(LEFT_BUMBER)));
-    buttonB.whileHeld(new OpenValve(Robot.m_cannonOne, () -> xboxController.getRawButton(LEFT_BUMBER)));
-    // buttonX.whileHeld(new OpenValve(Robot.m_cannonTwo));
-    // buttonY.whileHeld(new OpenValve(Robot.m_cannonThree));
+    buttonA.whenPressed(new ShootCommand(Robot.m_leftCannon, safetySupplier));
+    buttonB.whenPressed(new ShootCommand(Robot.m_rightCannon, safetySupplier));
   }
-
 }
