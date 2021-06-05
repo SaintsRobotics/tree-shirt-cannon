@@ -7,9 +7,10 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -30,10 +31,10 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
 
   // All fields are static. Only those that need to be public are.
-  private static Talon frontLeft = new Talon(0);
-  private static Talon backLeft = new Talon(1);
-  private static Talon frontRight = new Talon(2);
-  private static Talon backRight = new Talon(3);
+  private static WPI_TalonSRX frontLeft = new WPI_TalonSRX(0);
+  private static WPI_TalonSRX backLeft = new WPI_TalonSRX(1);
+  private static WPI_TalonSRX frontRight = new WPI_TalonSRX(2);
+  private static WPI_TalonSRX backRight = new WPI_TalonSRX(3);
 
   public static SpeedControllerGroup leftWheels = new SpeedControllerGroup(frontLeft, backLeft);
   public static SpeedControllerGroup rightWheels = new SpeedControllerGroup(frontRight, backRight);
