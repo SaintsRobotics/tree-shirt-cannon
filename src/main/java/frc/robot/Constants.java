@@ -23,7 +23,7 @@ public final class Constants {
     public static final class Drivetrain {
         /** Coefficient to multiply the speed of the robot while not boosting */
         public static final double NORMAL_COEFFICIENT = 0.75;
-        
+
         /** Coefficient to multiply the speed of the robot while boosting */
         public static final double BOOST_COEFFICIENT = 0.9;
     }
