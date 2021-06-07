@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DrivetrainSubsystem m_drivetrain = new DrivetrainSubsystem(RobotMap.leftWheels, RobotMap.rightWheels);
+  private final DrivetrainSubsystem m_drivetrain = new DrivetrainSubsystem(RobotMap.differentialDrive);
   private final CannonSubsystem m_leftCannon = new CannonSubsystem("Left Cannon", RobotMap.leftRelay);
   private final CannonSubsystem m_rightCannon = new CannonSubsystem("Right Cannon", RobotMap.rightRelay);
 

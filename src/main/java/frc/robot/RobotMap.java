@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -38,6 +39,7 @@ public class RobotMap {
 
   public static SpeedControllerGroup leftWheels = new SpeedControllerGroup(frontLeft, backLeft);
   public static SpeedControllerGroup rightWheels = new SpeedControllerGroup(frontRight, backRight);
+  public static DifferentialDrive differentialDrive = new DifferentialDrive(leftWheels, rightWheels);
 
   public static Relay leftRelay = new Relay(0);
   public static Relay rightRelay = new Relay(1);

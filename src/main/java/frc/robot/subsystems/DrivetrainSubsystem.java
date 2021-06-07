@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,9 +18,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private double m_rotateSpeed;
 
   /** Creates a new DrivetrainSubsystem. */
-  public DrivetrainSubsystem(SpeedController leftMotor, SpeedController rightMotor) {
-    m_differentialDrive = new DifferentialDrive(leftMotor, rightMotor);
-
+  public DrivetrainSubsystem(DifferentialDrive differentialDrive) {
+    m_differentialDrive = differentialDrive;
   }
 
   @Override
