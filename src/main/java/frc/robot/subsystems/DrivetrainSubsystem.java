@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+/** Subsystem that controls the drivetrain of the robot. */
 public class DrivetrainSubsystem extends SubsystemBase {
   private static final double SPEED_REDUCER = 0.75;
   private static final double BOOST_COEFFICIENT = .9;
@@ -18,7 +19,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private double m_rotateSpeed;
   private boolean m_isBoosted;
 
-  /** Creates a new DrivetrainSubsystem. */
+  /**
+   * Creates a new {@link DrivetrainSubsystem}.
+   * 
+   * @param differentialDrive the drivetrain of the robot
+   */
   public DrivetrainSubsystem(DifferentialDrive differentialDrive) {
     m_differentialDrive = differentialDrive;
   }
@@ -39,6 +44,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
     SmartDashboard.putBoolean("Is Boosted", m_isBoosted);
   }
 
+  /**
+   * Drives the robot using arcade drive.
+   * 
+   * @param moveSpeed   the speed the robot moves forward or backwards (range of
+   *                    -1 to 1)
+   * @param rotateSpeed the speed the robot rotates (range of -1 to 1)
+   * @param isBoosted   whether the robot should drive with a faster boost mode
+   */
   public void arcadeDrive(double moveSpeed, double rotateSpeed, boolean isBoosted) {
     m_moveSpeed = moveSpeed;
     m_rotateSpeed = rotateSpeed;

@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+/** Subsystem that controls a cannon of the robot. */
 public class CannonSubsystem extends SubsystemBase {
   /**
    * The number of seconds the {@link Relay} needs to be powered to ensure it
@@ -55,6 +56,7 @@ public class CannonSubsystem extends SubsystemBase {
     SmartDashboard.putNumber(getName() + " Timer Value", m_timer.get());
   }
 
+  /** Opens and closes the valve which shoots a t-shirt. */
   public void shoot() {
     m_timer.reset();
     m_relay.set(OPEN_VALVE);
