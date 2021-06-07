@@ -32,9 +32,9 @@ public class ShootCommand extends InstantCommand {
 
   @Override
   public void initialize() {
-        // can only shoot if safety button is held
-        if (m_safetySupplier.getAsBoolean()) {
-          m_cannon.shoot();
-        }    
+    // can only shoot if safety button is held
+    if (m_safetySupplier.getAsBoolean()) {
+      m_cannon.shoot();
+    }
   }
 }

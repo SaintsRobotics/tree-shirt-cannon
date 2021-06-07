@@ -23,8 +23,7 @@ public class DrivetrainCommand extends CommandBase {
 
   @Override
   public void execute() {
-    m_drivetrain.arcadeDrive(-RobotContainer.m_controller.getRawAxis(1),
-    RobotContainer.m_controller.getRawAxis(4));
+    m_drivetrain.arcadeDrive(-RobotContainer.m_controller.getRawAxis(1), RobotContainer.m_controller.getRawAxis(4));
   }
 
   @Override
