@@ -4,40 +4,36 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
-public class DrivetrainCommand extends Command {
+public class DrivetrainCommand extends CommandBase {
   private DrivetrainSubsystem m_drivetrain;
 
+  /** Creates a new DrivetrainCommand. */
   public DrivetrainCommand(DrivetrainSubsystem drivetrain) {
-    super(drivetrain);
     m_drivetrain = drivetrain;
+    addRequirements(m_drivetrain);
   }
 
   @Override
-  protected void initialize() {
+  public void initialize() {
   }
 
   @Override
-  protected void execute() {
-    m_drivetrain.arcadeDrive(-OI.xboxController.getRawAxis(OI.LEFT_STICK_Y),
-        OI.xboxController.getRawAxis(OI.RIGHT_STICK_X));
+  public void execute() {
+    m_drivetrain.arcadeDrive(-RobotContainer.m_controller.getRawAxis(1),
+    RobotContainer.m_controller.getRawAxis(4));
   }
 
   @Override
-  protected boolean isFinished() {
-    return false;
-  }
-
-  @Override
-  protected void end() {
+  public void end(boolean interrupted) {
     m_drivetrain.arcadeDrive(0, 0);
   }
 
   @Override
-  protected void interrupted() {
-    end();
+  public boolean isFinished() {
+    return false;
   }
 }

@@ -5,9 +5,13 @@
 package frc.robot.commands;
 
 import java.util.function.BooleanSupplier;
-import edu.wpi.first.wpilibj.command.InstantCommand;
+
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.CannonSubsystem;
 
+// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+// information, see:
+// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 /** Shoots the {@link CannonSubsystem}. */
 public class ShootCommand extends InstantCommand {
   private CannonSubsystem m_cannon;
@@ -21,16 +25,16 @@ public class ShootCommand extends InstantCommand {
    *                       {@link CannonSubsystem} from firing when not held
    */
   public ShootCommand(CannonSubsystem cannon, BooleanSupplier safetySupplier) {
-    super(cannon);
     m_cannon = cannon;
+    addRequirements(m_cannon);
     m_safetySupplier = safetySupplier;
   }
 
   @Override
-  protected void initialize() {
-    // can only shoot if safety button is held
-    if (m_safetySupplier.getAsBoolean()) {
-      m_cannon.shoot();
-    }
+  public void initialize() {
+        // can only shoot if safety button is held
+        if (m_safetySupplier.getAsBoolean()) {
+          m_cannon.shoot();
+        }    
   }
 }

@@ -7,10 +7,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Relay.Value;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class CannonSubsystem extends Subsystem {
+public class CannonSubsystem extends SubsystemBase {
   /**
    * The number of seconds the {@link Relay} needs to be powered to ensure it
    * becomes fully opened or closed.
@@ -36,7 +36,7 @@ public class CannonSubsystem extends Subsystem {
    * @param relay the {@link Relay} that opens and closes the valve
    */
   public CannonSubsystem(String name, Relay relay) {
-    super(name);
+    setName(name);
     m_relay = relay;
     m_timer = new Timer();
     m_timer.start();
@@ -51,13 +51,8 @@ public class CannonSubsystem extends Subsystem {
       m_relay.set(CLOSE_VALVE);
     }
 
-    SmartDashboard.putString(super.getName() + " State", m_relay.get().toString());
-    SmartDashboard.putNumber(super.getName() + " Timer Value", m_timer.get());
-  }
-
-  @Override
-  protected void initDefaultCommand() {
-
+    SmartDashboard.putString(getName() + " State", m_relay.get().toString());
+    SmartDashboard.putNumber(getName() + " Timer Value", m_timer.get());
   }
 
   public void shoot() {
