@@ -6,26 +6,12 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 /** Subsystem that controls a cannon of the robot. */
 public class CannonSubsystem extends SubsystemBase {
-  /**
-   * The number of seconds the {@link Relay} needs to be powered to ensure it
-   * becomes fully opened or closed.
-   */
-  private static final double ON_DURATION = 1;
-
-  /** Closes the valve by running the {@link Relay} forward. */
-  private static final Value CLOSE_VALVE = Value.kForward;
-
-  /** Opens the valve by running the {@link Relay} in reverse. */
-  private static final Value OPEN_VALVE = Value.kReverse;
-
-  /** Turns the {@link Relay} off. */
-  private static final Value OFF = Value.kOff;
 
   private Relay m_relay;
   private Timer m_timer;
@@ -46,10 +32,10 @@ public class CannonSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // closes the valve then turns off the relay after shooting
-    if (m_timer.get() > ON_DURATION * 2) {
-      m_relay.set(OFF);
-    } else if (m_timer.get() > ON_DURATION) {
-      m_relay.set(CLOSE_VALVE);
+    if (m_timer.get() > Constants.Cannon.ON_DURATION * 2) {
+      m_relay.set(Constants.Cannon.OFF);
+    } else if (m_timer.get() > Constants.Cannon.ON_DURATION) {
+      m_relay.set(Constants.Cannon.CLOSE_VALVE);
     }
 
     SmartDashboard.putString(getName() + " State", m_relay.get().toString());
@@ -59,6 +45,6 @@ public class CannonSubsystem extends SubsystemBase {
   /** Opens and closes the valve which shoots a t-shirt. */
   public void shoot() {
     m_timer.reset();
-    m_relay.set(OPEN_VALVE);
+    m_relay.set(Constants.Cannon.OPEN_VALVE);
   }
 }

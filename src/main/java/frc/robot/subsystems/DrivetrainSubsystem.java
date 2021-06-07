@@ -7,12 +7,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 /** Subsystem that controls the drivetrain of the robot. */
 public class DrivetrainSubsystem extends SubsystemBase {
-  private static final double SPEED_REDUCER = 0.75;
-  private static final double BOOST_COEFFICIENT = .9;
-
   private DifferentialDrive m_differentialDrive;
 
   private double m_moveSpeed;
@@ -31,11 +29,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     if (m_isBoosted) {
-      m_moveSpeed *= BOOST_COEFFICIENT;
-      m_rotateSpeed *= BOOST_COEFFICIENT;
+      m_moveSpeed *= Constants.Drivetrain.BOOST_COEFFICIENT;
+      m_rotateSpeed *= Constants.Drivetrain.BOOST_COEFFICIENT;
     } else {
-      m_moveSpeed *= SPEED_REDUCER;
-      m_rotateSpeed *= SPEED_REDUCER;
+      m_moveSpeed *= Constants.Drivetrain.NORMAL_COEFFICIENT;
+      m_rotateSpeed *= Constants.Drivetrain.NORMAL_COEFFICIENT;
     }
     m_differentialDrive.arcadeDrive(m_moveSpeed, m_rotateSpeed);
 
