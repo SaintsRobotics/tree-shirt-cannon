@@ -54,9 +54,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     final JoystickButton buttonA = new JoystickButton(m_controller, 1);
     final JoystickButton buttonB = new JoystickButton(m_controller, 2);
-    final JoystickButton leftBumper = new JoystickButton(m_controller, 5);
 
-    final BooleanSupplier safetySupplier = () -> leftBumper.get();
+    final BooleanSupplier safetySupplier = () -> m_controller.getBumper(Hand.kLeft);
 
     buttonA.whenPressed(new ShootCommand(m_leftCannon, safetySupplier));
     buttonB.whenPressed(new ShootCommand(m_rightCannon, safetySupplier));
