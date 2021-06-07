@@ -8,6 +8,7 @@ import java.util.function.BooleanSupplier;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.commands.DrivetrainCommand;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.CannonSubsystem;
@@ -23,14 +24,16 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  private final XboxController m_controller = new XboxController(0);
+
   // The robot's subsystems and commands are defined here...
   private final DrivetrainSubsystem m_drivetrain = new DrivetrainSubsystem(RobotMap.differentialDrive);
   private final CannonSubsystem m_leftCannon = new CannonSubsystem("Left Cannon", RobotMap.leftRelay);
   private final CannonSubsystem m_rightCannon = new CannonSubsystem("Right Cannon", RobotMap.rightRelay);
 
-  private final DrivetrainCommand m_drivetrainCommand = new DrivetrainCommand(m_drivetrain);
-
-  public static final XboxController m_controller = new XboxController(0);
+  private final DrivetrainCommand m_drivetrainCommand = new DrivetrainCommand(m_drivetrain,
+      () -> m_controller.getY(Hand.kLeft), () -> m_controller.getX(Hand.kRight),
+      () -> m_controller.getBumper(Hand.kRight));
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
