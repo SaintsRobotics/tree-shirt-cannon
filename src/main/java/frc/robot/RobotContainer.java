@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+
   private final XboxController m_controller = new XboxController(0);
 
   // The robot's subsystems and commands are defined here...
@@ -52,13 +53,13 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    final JoystickButton buttonA = new JoystickButton(m_controller, 1);
-    final JoystickButton buttonB = new JoystickButton(m_controller, 2);
+    final JoystickButton buttonA = new JoystickButton(m_controller, Constants.A_BUTTON);
+    final JoystickButton buttonB = new JoystickButton(m_controller, Constants.B_BUTTON);
 
-    final BooleanSupplier safetySupplier = () -> m_controller.getBumper(Hand.kLeft);
+    final BooleanSupplier leftBumper = () -> m_controller.getBumper(Hand.kLeft);
 
-    buttonA.whenPressed(new ShootCommand(m_leftCannon, safetySupplier));
-    buttonB.whenPressed(new ShootCommand(m_rightCannon, safetySupplier));
+    buttonA.whenPressed(new ShootCommand(m_leftCannon, leftBumper));
+    buttonB.whenPressed(new ShootCommand(m_rightCannon, leftBumper));
   }
 
   /**

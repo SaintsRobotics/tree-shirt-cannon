@@ -15,25 +15,25 @@ import frc.robot.subsystems.CannonSubsystem;
 /** Shoots the {@link CannonSubsystem}. */
 public class ShootCommand extends InstantCommand {
   private CannonSubsystem m_cannon;
-  private BooleanSupplier m_safetySupplier;
+  private BooleanSupplier m_safety;
 
   /**
    * Creates a new {@link ShootCommand}.
    * 
-   * @param cannon         the {@link CannonSubsystem} this command requires
-   * @param safetySupplier the safety button that prevents the
-   *                       {@link CannonSubsystem} from firing when not held
+   * @param cannon the {@link CannonSubsystem} this command requires
+   * @param safety the safety button that prevents the {@link CannonSubsystem}
+   *               from firing when not held
    */
-  public ShootCommand(CannonSubsystem cannon, BooleanSupplier safetySupplier) {
+  public ShootCommand(CannonSubsystem cannon, BooleanSupplier safety) {
     m_cannon = cannon;
     addRequirements(m_cannon);
-    m_safetySupplier = safetySupplier;
+    m_safety = safety;
   }
 
   @Override
   public void initialize() {
     // can only shoot if safety button is held
-    if (m_safetySupplier.getAsBoolean()) {
+    if (m_safety.getAsBoolean()) {
       m_cannon.shoot();
     }
   }

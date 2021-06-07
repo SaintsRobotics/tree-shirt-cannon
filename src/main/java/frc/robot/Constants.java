@@ -15,4 +15,6 @@ package frc.robot;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static final int A_BUTTON = 1;
+    public static final int B_BUTTON = 2;
 }
