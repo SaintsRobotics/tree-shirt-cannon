@@ -28,6 +28,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    // changes the speed of the robot depending on if it's boosted
     if (m_isBoosted) {
       m_moveSpeed *= Constants.Drivetrain.BOOST_COEFFICIENT;
       m_rotateSpeed *= Constants.Drivetrain.BOOST_COEFFICIENT;

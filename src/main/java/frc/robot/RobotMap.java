@@ -37,8 +37,8 @@ public class RobotMap {
   private static WPI_TalonSRX frontRight = new WPI_TalonSRX(2);
   private static WPI_TalonSRX backRight = new WPI_TalonSRX(3);
 
-  public static SpeedControllerGroup leftWheels = new SpeedControllerGroup(frontLeft, backLeft);
-  public static SpeedControllerGroup rightWheels = new SpeedControllerGroup(frontRight, backRight);
+  private static SpeedControllerGroup leftWheels = new SpeedControllerGroup(frontLeft, backLeft);
+  private static SpeedControllerGroup rightWheels = new SpeedControllerGroup(frontRight, backRight);
   public static DifferentialDrive differentialDrive = new DifferentialDrive(leftWheels, rightWheels);
 
   public static Relay leftRelay = new Relay(0);
