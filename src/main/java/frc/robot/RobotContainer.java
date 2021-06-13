@@ -60,9 +60,8 @@ public class RobotContainer {
         .whenPressed(() -> m_robotDrive.setMaxOutput(DriveConstants.BOOST_COEFFICIENT))
         .whenReleased(() -> m_robotDrive.setMaxOutput(DriveConstants.NORMAL_COEFFICIENT));
 
-    final BooleanSupplier leftBumper = () -> m_controller.getBumper(Hand.kLeft);
-    new JoystickButton(m_controller, Button.kA.value).whenPressed(new ShootCommand(m_leftCannon, leftBumper));
-    new JoystickButton(m_controller, Button.kB.value).whenPressed(new ShootCommand(m_rightCannon, leftBumper));
+    new JoystickButton(m_controller, Button.kA.value).whenPressed(new ShootCommand(m_leftCannon));
+    new JoystickButton(m_controller, Button.kB.value).whenPressed(new ShootCommand(m_rightCannon));
   }
 
   /**

@@ -4,37 +4,49 @@
 
 package frc.robot.commands;
 
-import java.util.function.BooleanSupplier;
-
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.CannonConstants;
 import frc.robot.subsystems.CannonSubsystem;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-/** Shoots the {@link CannonSubsystem}. */
-public class ShootCommand extends InstantCommand {
+public class ShootCommand extends CommandBase {
   private CannonSubsystem m_cannon;
-  private BooleanSupplier m_safety;
+  private Timer m_timer;
 
-  /**
-   * Creates a new {@link ShootCommand}.
-   * 
-   * @param cannon the {@link CannonSubsystem} this command requires
-   * @param safety the safety button that prevents the {@link CannonSubsystem}
-   *               from firing when not held
-   */
-  public ShootCommand(CannonSubsystem cannon, BooleanSupplier safety) {
+  /** Creates a new {@link ShootCommand}. */
+  public ShootCommand(CannonSubsystem cannon) {
+    // Use addRequirements() here to declare subsystem dependencies.
     m_cannon = cannon;
     addRequirements(m_cannon);
-    m_safety = safety;
+
+    m_timer = new Timer();
   }
 
+  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // can only shoot if safety button is held
-    if (m_safety.getAsBoolean()) {
-      m_cannon.shoot();
+    m_timer.start();
+    m_cannon.set(CannonConstants.OPEN_VALVE);
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    // closes the valve then turns off the relay after shooting
+    if (m_timer.get() > CannonConstants.ON_DURATION) {
+      m_cannon.set(CannonConstants.CLOSE_VALVE);
     }
+  }
+
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+    m_cannon.set(CannonConstants.OFF);
+  }
+
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return m_timer.get() > CannonConstants.ON_DURATION * 2;
   }
 }
