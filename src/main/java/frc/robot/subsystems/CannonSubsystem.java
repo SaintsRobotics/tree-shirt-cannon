@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.CannonConstants;
 
 /** Subsystem that controls a cannon of the robot. */
 public class CannonSubsystem extends SubsystemBase {
@@ -32,10 +32,10 @@ public class CannonSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // closes the valve then turns off the relay after shooting
-    if (m_timer.get() > Constants.Cannon.ON_DURATION * 2) {
-      m_relay.set(Constants.Cannon.OFF);
-    } else if (m_timer.get() > Constants.Cannon.ON_DURATION) {
-      m_relay.set(Constants.Cannon.CLOSE_VALVE);
+    if (m_timer.get() > CannonConstants.ON_DURATION * 2) {
+      m_relay.set(CannonConstants.OFF);
+    } else if (m_timer.get() > CannonConstants.ON_DURATION) {
+      m_relay.set(CannonConstants.CLOSE_VALVE);
     }
 
     SmartDashboard.putString(getName() + " State", m_relay.get().toString());
@@ -44,6 +44,6 @@ public class CannonSubsystem extends SubsystemBase {
   /** Opens and closes the valve which shoots a t-shirt. */
   public void shoot() {
     m_timer.reset();
-    m_relay.set(Constants.Cannon.OPEN_VALVE);
+    m_relay.set(CannonConstants.OPEN_VALVE);
   }
 }

@@ -26,7 +26,7 @@ public final class Constants {
         public static final double BOOST_COEFFICIENT = 0.9;
     }
 
-    public static final class Cannon {
+    public static final class CannonConstants {
         /**
          * The number of seconds the {@link Relay} needs to be powered to ensure it
          * becomes fully opened or closed.
