@@ -9,6 +9,7 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.DrivetrainCommand;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.CannonSubsystem;
@@ -53,13 +54,10 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    final JoystickButton buttonA = new JoystickButton(m_controller, Constants.A_BUTTON);
-    final JoystickButton buttonB = new JoystickButton(m_controller, Constants.B_BUTTON);
-
     final BooleanSupplier leftBumper = () -> m_controller.getBumper(Hand.kLeft);
 
-    buttonA.whenPressed(new ShootCommand(m_leftCannon, leftBumper));
-    buttonB.whenPressed(new ShootCommand(m_rightCannon, leftBumper));
+    new JoystickButton(m_controller, Button.kA.value).whenPressed(new ShootCommand(m_leftCannon, leftBumper));
+    new JoystickButton(m_controller, Button.kB.value).whenPressed(new ShootCommand(m_rightCannon, leftBumper));
   }
 
   /**

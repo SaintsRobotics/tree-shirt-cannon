@@ -17,8 +17,6 @@ import edu.wpi.first.wpilibj.Relay.Value;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int A_BUTTON = 1;
-    public static final int B_BUTTON = 2;
 
     public static final class Drivetrain {
         /** Coefficient to multiply the speed of the robot while not boosting */
