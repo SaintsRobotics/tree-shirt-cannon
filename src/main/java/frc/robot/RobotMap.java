@@ -12,6 +12,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Constants.CannonConstants;
+import frc.robot.Constants.DriveConstants;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -32,15 +34,20 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
 
   // All fields are static. Only those that need to be public are.
-  private static WPI_TalonSRX frontLeft = new WPI_TalonSRX(0);
-  private static WPI_TalonSRX backLeft = new WPI_TalonSRX(1);
-  private static WPI_TalonSRX frontRight = new WPI_TalonSRX(2);
-  private static WPI_TalonSRX backRight = new WPI_TalonSRX(3);
 
-  private static SpeedControllerGroup leftWheels = new SpeedControllerGroup(frontLeft, backLeft);
-  private static SpeedControllerGroup rightWheels = new SpeedControllerGroup(frontRight, backRight);
-  public static DifferentialDrive differentialDrive = new DifferentialDrive(leftWheels, rightWheels);
+  // The motors on the left side of the drive.
+  private static final SpeedControllerGroup leftMotors = new SpeedControllerGroup(
+      new WPI_TalonSRX(DriveConstants.kLeftMotor1Port),
+      new WPI_TalonSRX(DriveConstants.kLeftMotor2Port));
 
-  public static Relay leftRelay = new Relay(0);
-  public static Relay rightRelay = new Relay(1);
+  // The motors on the right side of the drive.
+  private static final SpeedControllerGroup rightMotors = new SpeedControllerGroup(
+      new WPI_TalonSRX(DriveConstants.kRightMotor1Port),
+      new WPI_TalonSRX(DriveConstants.kRightMotor2Port));
+
+  // The robot's drive
+  public static final DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
+
+  public static final Relay leftRelay = new Relay(CannonConstants.kLeftRelayPort);
+  public static final Relay rightRelay = new Relay(CannonConstants.kRightRelayPort);
 }

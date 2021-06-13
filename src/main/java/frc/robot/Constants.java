@@ -17,8 +17,12 @@ import edu.wpi.first.wpilibj.Relay.Value;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
-
     public static final class DriveConstants {
+        public static final int kLeftMotor1Port = 1;
+        public static final int kLeftMotor2Port = 2;
+        public static final int kRightMotor1Port = 3;
+        public static final int kRightMotor2Port = 4;
+
         /** Coefficient to multiply the speed of the robot while not boosting */
         public static final double NORMAL_COEFFICIENT = 0.75;
 
@@ -27,6 +31,9 @@ public final class Constants {
     }
 
     public static final class CannonConstants {
+        public static final int kLeftRelayPort = 0;
+        public static final int kRightRelayPort = 1;
+
         /**
          * The number of seconds the {@link Relay} needs to be powered to ensure it
          * becomes fully opened or closed.
@@ -41,5 +48,9 @@ public final class Constants {
 
         /** Turns the {@link Relay} off. */
         public static final Value OFF = Value.kOff;
+    }
+
+    public static final class OIConstants {
+        public static final int kControllerPort = 0;
     }
 }

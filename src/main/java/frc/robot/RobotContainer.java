@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.OIConstants;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.CannonSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -24,13 +25,12 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-
-  private final XboxController m_controller = new XboxController(0);
-
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_robotDrive = new DriveSubsystem(RobotMap.differentialDrive);
   private final CannonSubsystem m_leftCannon = new CannonSubsystem("Left Cannon", RobotMap.leftRelay);
   private final CannonSubsystem m_rightCannon = new CannonSubsystem("Right Cannon", RobotMap.rightRelay);
+  
+  private final XboxController m_controller = new XboxController(OIConstants.kControllerPort);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -42,8 +42,11 @@ public class RobotContainer {
     m_robotDrive.setDefaultCommand(
         // A split-stick arcade command, with forward/backward controlled by the left
         // hand, and turning controlled by the right.
-        new RunCommand(() -> m_robotDrive.arcadeDrive(m_controller.getY(Hand.kLeft), m_controller.getX(Hand.kRight)),
-            m_robotDrive));
+        new RunCommand(
+            () -> m_robotDrive.arcadeDrive(
+                m_controller.getY(Hand.kLeft),
+                m_controller.getX(Hand.kRight)),
+                m_robotDrive));
   }
 
   /**
