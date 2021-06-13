@@ -8,7 +8,7 @@ import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 /** Command to drive the robot using arcade drive. */
@@ -46,11 +46,11 @@ public class DrivetrainCommand extends CommandBase {
     double move = m_moveSpeed.getAsDouble();
     double turn = m_turnSpeed.getAsDouble();
     if (m_boost.getAsBoolean()) {
-      move *= Constants.Drivetrain.BOOST_COEFFICIENT;
-      turn *= Constants.Drivetrain.BOOST_COEFFICIENT;
+      move *= DriveConstants.BOOST_COEFFICIENT;
+      turn *= DriveConstants.BOOST_COEFFICIENT;
     } else {
-      move *= Constants.Drivetrain.NORMAL_COEFFICIENT;
-      turn *= Constants.Drivetrain.NORMAL_COEFFICIENT;
+      move *= DriveConstants.NORMAL_COEFFICIENT;
+      turn *= DriveConstants.NORMAL_COEFFICIENT;
     }
     m_drivetrain.arcadeDrive(move, turn);
   }

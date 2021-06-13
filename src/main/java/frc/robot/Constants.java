@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.Relay.Value;
  */
 public final class Constants {
 
-    public static final class Drivetrain {
+    public static final class DriveConstants {
         /** Coefficient to multiply the speed of the robot while not boosting */
         public static final double NORMAL_COEFFICIENT = 0.75;
 
