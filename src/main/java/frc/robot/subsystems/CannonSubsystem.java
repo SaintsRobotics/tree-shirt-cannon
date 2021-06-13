@@ -39,7 +39,6 @@ public class CannonSubsystem extends SubsystemBase {
     }
 
     SmartDashboard.putString(getName() + " State", m_relay.get().toString());
-    SmartDashboard.putNumber(getName() + " Timer Value", m_timer.get());
   }
 
   /** Opens and closes the valve which shoots a t-shirt. */

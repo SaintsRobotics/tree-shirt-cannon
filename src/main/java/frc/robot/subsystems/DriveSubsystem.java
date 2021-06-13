@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /** Subsystem that controls the drivetrain of the robot. */
 public class DriveSubsystem extends SubsystemBase {
-  private DifferentialDrive m_differentialDrive;
+  private DifferentialDrive m_drive;
 
   /**
    * Creates a new {@link DriveSubsystem}.
@@ -18,7 +18,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @param differentialDrive the drivetrain of the robot
    */
   public DriveSubsystem(DifferentialDrive differentialDrive) {
-    m_differentialDrive = differentialDrive;
+    m_drive = differentialDrive;
   }
 
   @Override
@@ -26,16 +26,25 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   /**
-   * Drives the robot using arcade drive.
-   * 
-   * @param moveSpeed   the speed the robot moves forward or backwards (range of
-   *                    -1 to 1)
-   * @param rotateSpeed the speed the robot rotates (range of -1 to 1)
-   * @param isBoosted   whether the robot should drive with a faster boost mode
+   * Drives the robot using arcade controls.
+   *
+   * @param fwd the commanded forward movement
+   * @param rot the commanded rotation
    */
-  public void arcadeDrive(double moveSpeed, double rotateSpeed) {
-    m_differentialDrive.arcadeDrive(moveSpeed, rotateSpeed);
-    SmartDashboard.putNumber("Move Speed", moveSpeed);
-    SmartDashboard.putNumber("Rotate Speed", rotateSpeed);
+  public void arcadeDrive(double fwd, double rot) {
+    m_drive.arcadeDrive(fwd, rot);
+    SmartDashboard.putNumber("Move Speed", fwd);
+    SmartDashboard.putNumber("Rotate Speed", rot);
+  }
+
+  /**
+   * Sets the max output of the drive. Useful for scaling the drive to drive more
+   * slowly.
+   *
+   * @param maxOutput the maximum output to which the drive will be constrained
+   */
+  public void setMaxOutput(double maxOutput) {
+    m_drive.setMaxOutput(maxOutput);
+    SmartDashboard.putNumber("Max Output", maxOutput);
   }
 }
