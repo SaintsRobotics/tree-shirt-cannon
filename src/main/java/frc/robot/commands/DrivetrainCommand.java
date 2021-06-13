@@ -9,11 +9,11 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.DriveSubsystem;
 
 /** Command to drive the robot using arcade drive. */
 public class DrivetrainCommand extends CommandBase {
-  private DrivetrainSubsystem m_drivetrain;
+  private DriveSubsystem m_drivetrain;
 
   private DoubleSupplier m_moveSpeed;
   private DoubleSupplier m_turnSpeed;
@@ -22,12 +22,12 @@ public class DrivetrainCommand extends CommandBase {
   /**
    * Creates a new {@link DrivetrainCommand}.
    * 
-   * @param drivetrain the required {@link DrivetrainSubsystem}
+   * @param drivetrain the required {@link DriveSubsystem}
    * @param moveSpeed  how fast the robot should move forward or backwards
    * @param turnSpeed  how fast the robot should rotate
    * @param boost      whether the robot should drive in a faster boost mode
    */
-  public DrivetrainCommand(DrivetrainSubsystem drivetrain, DoubleSupplier moveSpeed, DoubleSupplier turnSpeed,
+  public DrivetrainCommand(DriveSubsystem drivetrain, DoubleSupplier moveSpeed, DoubleSupplier turnSpeed,
       BooleanSupplier boost) {
     m_drivetrain = drivetrain;
     addRequirements(m_drivetrain);

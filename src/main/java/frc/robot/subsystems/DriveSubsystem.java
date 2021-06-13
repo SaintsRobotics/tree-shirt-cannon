@@ -9,15 +9,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /** Subsystem that controls the drivetrain of the robot. */
-public class DrivetrainSubsystem extends SubsystemBase {
+public class DriveSubsystem extends SubsystemBase {
   private DifferentialDrive m_differentialDrive;
 
   /**
-   * Creates a new {@link DrivetrainSubsystem}.
+   * Creates a new {@link DriveSubsystem}.
    * 
    * @param differentialDrive the drivetrain of the robot
    */
-  public DrivetrainSubsystem(DifferentialDrive differentialDrive) {
+  public DriveSubsystem(DifferentialDrive differentialDrive) {
     m_differentialDrive = differentialDrive;
   }
 

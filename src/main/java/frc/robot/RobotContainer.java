@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.DrivetrainCommand;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.CannonSubsystem;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -29,7 +29,7 @@ public class RobotContainer {
   private final XboxController m_controller = new XboxController(0);
 
   // The robot's subsystems and commands are defined here...
-  private final DrivetrainSubsystem m_drivetrain = new DrivetrainSubsystem(RobotMap.differentialDrive);
+  private final DriveSubsystem m_drivetrain = new DriveSubsystem(RobotMap.differentialDrive);
   private final CannonSubsystem m_leftCannon = new CannonSubsystem("Left Cannon", RobotMap.leftRelay);
   private final CannonSubsystem m_rightCannon = new CannonSubsystem("Right Cannon", RobotMap.rightRelay);
 
