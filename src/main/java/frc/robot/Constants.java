@@ -24,10 +24,10 @@ public final class Constants {
         public static final int kRightMotor2Port = 4;
 
         /** Coefficient to multiply the speed of the robot while not boosting */
-        public static final double NORMAL_COEFFICIENT = 0.75;
+        public static final double kNormalCoefficient = 0.75;
 
         /** Coefficient to multiply the speed of the robot while boosting */
-        public static final double BOOST_COEFFICIENT = 0.9;
+        public static final double kBoostCoefficient = 0.9;
     }
 
     public static final class CannonConstants {
@@ -38,16 +38,16 @@ public final class Constants {
          * The number of seconds the {@link Relay} needs to be powered to ensure it
          * becomes fully opened or closed.
          */
-        public static final double ON_DURATION = 1;
+        public static final double kOnDuration = 1;
 
         /** Closes the valve by running the {@link Relay} forward. */
-        public static final Value CLOSE_VALVE = Value.kForward;
+        public static final Value kCloseValue = Value.kForward;
 
         /** Opens the valve by running the {@link Relay} in reverse. */
-        public static final Value OPEN_VALVE = Value.kReverse;
+        public static final Value kOpenValue = Value.kReverse;
 
         /** Turns the {@link Relay} off. */
-        public static final Value OFF = Value.kOff;
+        public static final Value kOffValue = Value.kOff;
     }
 
     public static final class OIConstants {

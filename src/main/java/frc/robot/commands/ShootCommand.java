@@ -26,27 +26,27 @@ public class ShootCommand extends CommandBase {
   @Override
   public void initialize() {
     m_timer.start();
-    m_cannon.set(CannonConstants.OPEN_VALVE);
+    m_cannon.set(CannonConstants.kOpenValue);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     // closes the valve then turns off the relay after shooting
-    if (m_timer.get() > CannonConstants.ON_DURATION) {
-      m_cannon.set(CannonConstants.CLOSE_VALVE);
+    if (m_timer.get() > CannonConstants.kOnDuration) {
+      m_cannon.set(CannonConstants.kCloseValue);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_cannon.set(CannonConstants.OFF);
+    m_cannon.set(CannonConstants.kOffValue);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_timer.get() > CannonConstants.ON_DURATION * 2;
+    return m_timer.get() > CannonConstants.kOnDuration * 2;
   }
 }
