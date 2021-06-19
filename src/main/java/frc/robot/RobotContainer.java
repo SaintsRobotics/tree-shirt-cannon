@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.RobotMap.CannonHardware;
+import frc.robot.RobotMap.DriveHardware;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.CannonSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -26,9 +28,9 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem(RobotMap.differentialDrive);
-  private final CannonSubsystem m_leftCannon = new CannonSubsystem("Left Cannon", RobotMap.leftRelay);
-  private final CannonSubsystem m_rightCannon = new CannonSubsystem("Right Cannon", RobotMap.rightRelay);
+  private final DriveSubsystem m_robotDrive = new DriveSubsystem(DriveHardware.differentialDrive);
+  private final CannonSubsystem m_leftCannon = new CannonSubsystem("Left Cannon", CannonHardware.leftRelay);
+  private final CannonSubsystem m_rightCannon = new CannonSubsystem("Right Cannon", CannonHardware.rightRelay);
   
   private final XboxController m_controller = new XboxController(OIConstants.kControllerPort);
 

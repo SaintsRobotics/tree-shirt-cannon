@@ -19,7 +19,7 @@ import frc.robot.Constants.DriveConstants;
  * floating around.
  * 
  */
-public class RobotMap {
+public final class RobotMap {
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
@@ -32,19 +32,23 @@ public class RobotMap {
 
   // All fields are static. Only those that need to be public are.
 
-  // The motors on the left side of the drive.
-  private static final SpeedControllerGroup leftMotors = new SpeedControllerGroup(
-      new WPI_TalonSRX(DriveConstants.kLeftMotor1Port),
-      new WPI_TalonSRX(DriveConstants.kLeftMotor2Port));
+  public static final class DriveHardware {
+    // The motors on the left side of the drive.
+    private static final SpeedControllerGroup leftMotors = new SpeedControllerGroup(
+        new WPI_TalonSRX(DriveConstants.kLeftMotor1Port),
+        new WPI_TalonSRX(DriveConstants.kLeftMotor2Port));
 
-  // The motors on the right side of the drive.
-  private static final SpeedControllerGroup rightMotors = new SpeedControllerGroup(
-      new WPI_TalonSRX(DriveConstants.kRightMotor1Port),
-      new WPI_TalonSRX(DriveConstants.kRightMotor2Port));
+    // The motors on the right side of the drive.
+    private static final SpeedControllerGroup rightMotors = new SpeedControllerGroup(
+        new WPI_TalonSRX(DriveConstants.kRightMotor1Port),
+        new WPI_TalonSRX(DriveConstants.kRightMotor2Port));
 
-  // The robot's drive
-  public static final DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
+    // The robot's drive
+    public static final DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
+  }
 
-  public static final Relay leftRelay = new Relay(CannonConstants.kLeftRelayPort);
-  public static final Relay rightRelay = new Relay(CannonConstants.kRightRelayPort);
+  public static final class CannonHardware {
+    public static final Relay leftRelay = new Relay(CannonConstants.kLeftRelayPort);
+    public static final Relay rightRelay = new Relay(CannonConstants.kRightRelayPort);
+  }
 }
