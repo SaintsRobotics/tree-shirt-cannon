@@ -34,14 +34,16 @@ public class ShootCommand extends CommandBase {
   public void execute() {
     // closes the valve then turns off the relay after shooting
     if (m_timer.get() > CannonConstants.kOnDuration) {
-      m_cannon.set(CannonConstants.kCloseValue);
+      System.out.println("Execute");
+      //m_cannon.set(CannonConstants.kCloseValue);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_cannon.set(CannonConstants.kOffValue);
+    m_cannon.set(CannonConstants.kCloseValue);
+    //m_cannon.set(CannonConstants.kOffValue);
   }
 
   // Returns true when the command should end.

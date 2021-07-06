@@ -38,7 +38,7 @@ public final class Constants {
          * The number of seconds the {@link Relay} needs to be powered to ensure it
          * becomes fully opened or closed.
          */
-        public static final double kOnDuration = 1;
+        public static final double kOnDuration = 5;
 
         /** Closes the valve by running the {@link Relay} forward. */
         public static final Value kCloseValue = Value.kForward;

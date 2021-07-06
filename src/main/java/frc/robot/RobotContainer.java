@@ -46,7 +46,7 @@ public class RobotContainer {
         // hand, and turning controlled by the right.
         new RunCommand(
             () -> m_robotDrive.arcadeDrive(
-                m_controller.getY(Hand.kLeft),
+                -m_controller.getY(Hand.kLeft),
                 m_controller.getX(Hand.kRight)),
                 m_robotDrive));
   }
