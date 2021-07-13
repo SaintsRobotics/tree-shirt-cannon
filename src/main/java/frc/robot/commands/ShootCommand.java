@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.CannonConstants;
 import frc.robot.subsystems.CannonSubsystem;
@@ -26,24 +27,25 @@ public class ShootCommand extends CommandBase {
   @Override
   public void initialize() {
     m_timer.start();
-    m_cannon.set(CannonConstants.kOpenValue);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // closes the valve then turns off the relay after shooting
+    // opens the valve, closes the valve, then turns off the relay after shooting
     if (m_timer.get() > CannonConstants.kOnDuration) {
       System.out.println("Execute");
-      //m_cannon.set(CannonConstants.kCloseValue);
+      m_cannon.set(CannonConstants.kCloseValue);
+      SmartDashboard.putNumber("timer", m_timer.get());
+    } else {
+      m_cannon.set(CannonConstants.kOpenValue);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_cannon.set(CannonConstants.kCloseValue);
-    //m_cannon.set(CannonConstants.kOffValue);
+    m_cannon.set(CannonConstants.kOffValue);
   }
 
   // Returns true when the command should end.
