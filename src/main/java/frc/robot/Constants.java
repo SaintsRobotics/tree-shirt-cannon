@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Relay.Value;
+import edu.wpi.first.wpilibj.Relay;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -36,17 +37,27 @@ public final class Constants {
 
         /**
          * The number of seconds the {@link Relay} needs to be powered to ensure it
-         * becomes fully opened or closed.
+         * becomes fully opened or closed. Do NOT power the relay for longer than one
+         * second to prevent the solenoid from overheating.
          */
-        public static final double kOnDuration = 5;
+        public static final double kOnDuration = 1;
 
-        /** Closes the valve by running the {@link Relay} forward. */
-        public static final Value kCloseValue = Value.kForward;
+        /**
+         * Closes the valve by running the {@link Relay} reverse. (Red LED on the relay,
+         * -12V)
+         */
+        public static final Value kCloseValue = Value.kReverse;
 
-        /** Opens the valve by running the {@link Relay} in reverse. */
-        public static final Value kOpenValue = Value.kReverse;
+        /**
+         * Opens the valve by running the {@link Relay} forward. (Green LED on the
+         * relay, +12V)
+         */
+        public static final Value kOpenValue = Value.kForward;
 
-        /** Turns the {@link Relay} off. */
+        /**
+         * Sets both {@link Relay} outputs to ground, latching the solenoid in its last
+         * commanded state. (Orange LED on the relay)
+         */
         public static final Value kOffValue = Value.kOff;
     }
 
