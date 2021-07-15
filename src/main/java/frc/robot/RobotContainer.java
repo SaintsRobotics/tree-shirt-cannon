@@ -12,6 +12,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.RobotMap.CannonHardware;
 import frc.robot.RobotMap.DriveHardware;
+import frc.robot.commands.CloseValveCommand;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.CannonSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -49,6 +50,15 @@ public class RobotContainer {
                 -m_controller.getY(Hand.kLeft),
                 m_controller.getX(Hand.kRight)),
                 m_robotDrive));
+  }
+
+  /**
+   * Sets both left and right valves to be closed. Call this method when
+   * teleop begins to make sure valves are closed on start.
+   */
+  public void initializeCannons() {
+    new CloseValveCommand(m_rightCannon).schedule();
+    new CloseValveCommand(m_leftCannon).schedule();
   }
 
   /**
