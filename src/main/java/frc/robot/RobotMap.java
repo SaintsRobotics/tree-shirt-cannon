@@ -1,15 +1,16 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Constants.CannonConstants;
+import frc.robot.Constants.DriveConstants;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -18,7 +19,7 @@ import edu.wpi.first.wpilibj.Talon;
  * floating around.
  * 
  */
-public class RobotMap {
+public final class RobotMap {
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
@@ -30,14 +31,24 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
 
   // All fields are static. Only those that need to be public are.
-  private static Talon frontLeft = new Talon(0);
-  private static Talon backLeft = new Talon(1);
-  private static Talon frontRight = new Talon(2);
-  private static Talon backRight = new Talon(3);
 
-  public static SpeedControllerGroup leftWheels = new SpeedControllerGroup(frontLeft, backLeft);
-  public static SpeedControllerGroup rightWheels = new SpeedControllerGroup(frontRight, backRight);
+  public static final class DriveHardware {
+    // The motors on the left side of the drive.
+    private static final SpeedControllerGroup leftMotors = new SpeedControllerGroup(
+        new WPI_TalonSRX(DriveConstants.kLeftMotor1Port),
+        new WPI_TalonSRX(DriveConstants.kLeftMotor2Port));
 
-  public static Relay leftRelay = new Relay(0);
-  public static Relay rightRelay = new Relay(1);
+    // The motors on the right side of the drive.
+    private static final SpeedControllerGroup rightMotors = new SpeedControllerGroup(
+        new WPI_TalonSRX(DriveConstants.kRightMotor1Port),
+        new WPI_TalonSRX(DriveConstants.kRightMotor2Port));
+
+    // The robot's drive
+    public static final DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
+  }
+
+  public static final class CannonHardware {
+    public static final Relay leftRelay = new Relay(CannonConstants.kLeftRelayPort);
+    public static final Relay rightRelay = new Relay(CannonConstants.kRightRelayPort);
+  }
 }
