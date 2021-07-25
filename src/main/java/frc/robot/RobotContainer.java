@@ -74,7 +74,7 @@ public class RobotContainer {
         .whenPressed(() -> m_robotDrive.setMaxOutput(DriveConstants.kBoostCoefficient))
         .whenReleased(() -> m_robotDrive.setMaxOutput(DriveConstants.kNormalCoefficient));
 
-    // safety button to prevent cannons from firing when not pressed
+    // safety button to prevent cannons from firing when not held down
     JoystickButton safetyButton = new JoystickButton(m_controller, Button.kBumperLeft.value);
 
     new JoystickButton(m_controller, Button.kA.value)
