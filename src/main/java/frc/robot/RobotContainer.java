@@ -13,6 +13,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.RobotMap.CannonHardware;
 import frc.robot.RobotMap.DriveHardware;
 import frc.robot.commands.CloseValveCommand;
+import frc.robot.commands.SafetyCommand;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.CannonSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -73,8 +74,13 @@ public class RobotContainer {
         .whenPressed(() -> m_robotDrive.setMaxOutput(DriveConstants.kBoostCoefficient))
         .whenReleased(() -> m_robotDrive.setMaxOutput(DriveConstants.kNormalCoefficient));
 
-    new JoystickButton(m_controller, Button.kA.value).whenPressed(new ShootCommand(m_leftCannon));
-    new JoystickButton(m_controller, Button.kB.value).whenPressed(new ShootCommand(m_rightCannon));
+    // safety button to prevent cannons from firing when not held down
+    JoystickButton safetyButton = new JoystickButton(m_controller, Button.kBumperLeft.value);
+
+    new JoystickButton(m_controller, Button.kA.value)
+        .whenPressed(new SafetyCommand(() -> safetyButton.get(), new ShootCommand(m_leftCannon)));
+    new JoystickButton(m_controller, Button.kB.value)
+        .whenPressed(new SafetyCommand(() -> safetyButton.get(), new ShootCommand(m_rightCannon)));
   }
 
   /**
