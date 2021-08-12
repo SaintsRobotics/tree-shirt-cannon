@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
@@ -35,15 +37,16 @@ public class RobotContainer {
   private final CannonSubsystem m_leftCannon = new CannonSubsystem("Left Cannon", CannonHardware.leftRelay);
   private final CannonSubsystem m_rightCannon = new CannonSubsystem("Right Cannon", CannonHardware.rightRelay);
 
-  // The left bumper is a safety to prevent the cannons from firing when not held
+  // A supplier that returns whether the left bumper is currently held. The left
+  // bumper acts as a safety that prevents the cannons from firing when not held
   // down
-  private final JoystickButton m_leftBumper = new JoystickButton(m_controller, Button.kBumperLeft.value);
+  private final BooleanSupplier m_safetySupplier = () -> new JoystickButton(m_controller, Button.kBumperLeft.value)
+      .get();
 
   // Commands to shoot the left and right cannons, respectively, but only if the
   // left bumper is held.
-  private final SafetyCommand m_leftShootCommand = new SafetyCommand(() -> m_leftBumper.get(),
-      new ShootCommand(m_leftCannon));
-  private final SafetyCommand m_rightShootCommand = new SafetyCommand(() -> m_leftBumper.get(),
+  private final SafetyCommand m_leftShootCommand = new SafetyCommand(m_safetySupplier, new ShootCommand(m_leftCannon));
+  private final SafetyCommand m_rightShootCommand = new SafetyCommand(m_safetySupplier,
       new ShootCommand(m_rightCannon));
 
   /**
@@ -56,11 +59,8 @@ public class RobotContainer {
     m_robotDrive.setDefaultCommand(
         // A split-stick arcade command, with forward/backward controlled by the left
         // hand, and turning controlled by the right.
-        new RunCommand(
-            () -> m_robotDrive.arcadeDrive(
-                -m_controller.getY(Hand.kLeft),
-                m_controller.getX(Hand.kRight)),
-                m_robotDrive));
+        new RunCommand(() -> m_robotDrive.arcadeDrive(-m_controller.getY(Hand.kLeft), m_controller.getX(Hand.kRight)),
+            m_robotDrive));
   }
 
   /**
