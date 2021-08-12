@@ -58,8 +58,8 @@ public class RobotContainer {
    * teleop begins to make sure valves are closed on start.
    */
   public void initializeCannons() {
-    //new CloseValveCommand(m_rightCannon).schedule();
-    //new CloseValveCommand(m_leftCannon).schedule();
+    new CloseValveCommand(m_rightCannon).schedule();
+    new CloseValveCommand(m_leftCannon).schedule();
   }
 
   /**
