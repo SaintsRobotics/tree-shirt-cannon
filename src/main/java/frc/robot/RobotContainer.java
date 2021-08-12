@@ -67,12 +67,12 @@ public class RobotContainer {
   }
 
   /**
-   * Sets both left and right valves to be closed. Call this method when teleop
-   * begins to make sure valves are closed on start.
+   * Sets both left and right valves to be closed. Call this method when
+   * teleop begins to make sure valves are closed on start.
    */
   public void initializeCannons() {
-    // new CloseValveCommand(m_rightCannon).schedule();
-    // new CloseValveCommand(m_leftCannon).schedule();
+    //new CloseValveCommand(m_rightCannon).schedule();
+    //new CloseValveCommand(m_leftCannon).schedule();
   }
 
   /**
