@@ -7,21 +7,20 @@ package frc.robot;
 import java.util.function.BooleanSupplier;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.RobotMap.CannonHardware;
 import frc.robot.RobotMap.DriveHardware;
-import frc.robot.commands.CloseValveCommand;
 import frc.robot.commands.SafetyCommand;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.CannonSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -65,15 +64,6 @@ public class RobotContainer {
                 -m_controller.getY(Hand.kLeft),
                 m_controller.getX(Hand.kRight)),
                 m_robotDrive));
-  }
-
-  /**
-   * Sets both left and right valves to be closed. Call this method when
-   * teleop begins to make sure valves are closed on start.
-   */
-  public void initializeCannons() {
-    //new CloseValveCommand(m_rightCannon).schedule();
-    //new CloseValveCommand(m_leftCannon).schedule();
   }
 
   /**
