@@ -6,29 +6,27 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Value;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-/** Subsystem that controls a cannon of the robot. */
+/** Subsystem that controls a single cannon of the robot. */
 public class CannonSubsystem extends SubsystemBase {
   private Relay m_relay;
 
   /**
    * Creates a new {@link CannonSubsystem}.
    * 
-   * @param name  the name of the {@link CannonSubsystem}
-   * @param relay the {@link Relay} that opens and closes the valve
+   * @param relay The {@link Relay} that opens and closes the valve.
    */
-  public CannonSubsystem(String name, Relay relay) {
-    setName(name);
+  public CannonSubsystem(Relay relay) {
     m_relay = relay;
   }
 
-  @Override
-  public void periodic() {
-    SmartDashboard.putString(getName() + " State", m_relay.get().toString());
-  }
-
+  /**
+   * Sets the value of the relay.
+   * 
+   * @param value The {@link Value} to set the relay to. (kOff, kOn, kReverse, or
+   *              kForward)
+   */
   public void set(Value value) {
     m_relay.set(value);
   }
