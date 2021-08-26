@@ -9,20 +9,23 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.CannonConstants;
 import frc.robot.subsystems.CannonSubsystem;
 
+/** Opens, then closes the valve, causing the cannon to shoot. */
 public class ShootCommand extends CommandBase {
   private CannonSubsystem m_cannon;
   private Timer m_timer;
 
-  /** Creates a new {@link ShootCommand}. */
+  /**
+   * Creates a new {@link ShootCommand}.
+   * 
+   * @param cannon The {@link CannonSubsystem} to use.
+   */
   public ShootCommand(CannonSubsystem cannon) {
-    // Use addRequirements() here to declare subsystem dependencies.
     m_cannon = cannon;
     addRequirements(m_cannon);
 
     m_timer = new Timer();
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     m_timer.reset();
@@ -30,7 +33,6 @@ public class ShootCommand extends CommandBase {
     m_cannon.set(CannonConstants.kOpenValue); // FIRE!
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     // Closes the valve after 1 second has passed.
@@ -39,13 +41,11 @@ public class ShootCommand extends CommandBase {
     }
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     m_cannon.set(CannonConstants.kOffValue);
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     // The command finished after 2 seconds have elapsed. (1 second after closing

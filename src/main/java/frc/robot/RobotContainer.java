@@ -34,8 +34,8 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_robotDrive = new DriveSubsystem(DriveHardware.differentialDrive);
-  private final CannonSubsystem m_leftCannon = new CannonSubsystem("Left Cannon", CannonHardware.leftRelay);
-  private final CannonSubsystem m_rightCannon = new CannonSubsystem("Right Cannon", CannonHardware.rightRelay);
+  private final CannonSubsystem m_leftCannon = new CannonSubsystem(CannonHardware.leftRelay);
+  private final CannonSubsystem m_rightCannon = new CannonSubsystem(CannonHardware.rightRelay);
 
   // A supplier that returns whether the left bumper is currently held. The left
   // bumper acts as a safety that prevents the cannons from firing when not held
@@ -56,14 +56,15 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
+    // Subsystems can not have the same name in the simulator.
+    m_leftCannon.setName("Left Cannon");
+    m_rightCannon.setName("Right Cannon");
+
     m_robotDrive.setDefaultCommand(
         // A split-stick arcade command, with forward/backward controlled by the left
         // hand, and turning controlled by the right.
-        new RunCommand(
-            () -> m_robotDrive.arcadeDrive(
-                -m_controller.getY(Hand.kLeft),
-                m_controller.getX(Hand.kRight)),
-                m_robotDrive));
+        new RunCommand(() -> m_robotDrive.arcadeDrive(-m_controller.getY(Hand.kLeft), m_controller.getX(Hand.kRight)),
+            m_robotDrive));
   }
 
   /**

@@ -17,7 +17,7 @@ public class SafetyCommand extends InstantCommand {
   /**
    * Creates a new {@link SafetyCommand}.
    * 
-   * @param safetySupplier Safety to prevent a command from running if the
+   * @param safetySupplier Safety to prevent a command from running if
    *                       {@link BooleanSupplier#getAsBoolean getAsBoolean}
    *                       returns false.
    * @param command        The command to run.

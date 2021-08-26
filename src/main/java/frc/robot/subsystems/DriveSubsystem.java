@@ -21,10 +21,6 @@ public class DriveSubsystem extends SubsystemBase {
     m_drive = differentialDrive;
   }
 
-  @Override
-  public void periodic() {
-  }
-
   /**
    * Drives the robot using arcade controls.
    *
