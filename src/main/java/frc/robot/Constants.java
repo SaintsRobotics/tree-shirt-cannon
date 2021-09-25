@@ -18,50 +18,50 @@ import edu.wpi.first.wpilibj.Relay.Value;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final class DriveConstants {
-        public static final int kLeftMotor1Port = 1;
-        public static final int kLeftMotor2Port = 2;
-        public static final int kRightMotor1Port = 3;
-        public static final int kRightMotor2Port = 4;
+  public static final class DriveConstants {
+    public static final int kLeftMotor1Port = 1;
+    public static final int kLeftMotor2Port = 2;
+    public static final int kRightMotor1Port = 3;
+    public static final int kRightMotor2Port = 4;
 
-        /** Coefficient to multiply the speed of the robot while not boosting */
-        public static final double kNormalCoefficient = 0.5;
+    /** Coefficient to multiply the speed of the robot while not boosting */
+    public static final double kNormalCoefficient = 0.5;
 
-        /** Coefficient to multiply the speed of the robot while boosting */
-        public static final double kBoostCoefficient = 1.0;
-    }
+    /** Coefficient to multiply the speed of the robot while boosting */
+    public static final double kBoostCoefficient = 1.0;
+  }
 
-    public static final class CannonConstants {
-        public static final int kLeftRelayPort = 0;
-        public static final int kRightRelayPort = 1;
+  public static final class CannonConstants {
+    public static final int kLeftRelayPort = 0;
+    public static final int kRightRelayPort = 1;
 
-        /**
-         * The number of seconds the {@link Relay} needs to be powered to ensure it
-         * becomes fully opened or closed. Do NOT power the relay for longer than one
-         * second to prevent the solenoid from overheating.
-         */
-        public static final double kOnDuration = 1;
+    /**
+     * The number of seconds the {@link Relay} needs to be powered to ensure it
+     * becomes fully opened or closed. Do NOT power the relay for longer than one
+     * second to prevent the solenoid from overheating.
+     */
+    public static final double kOnDuration = 1;
 
-        /**
-         * Closes the valve by running the {@link Relay} reverse. (Red LED on the relay,
-         * -12V)
-         */
-        public static final Value kCloseValue = Value.kReverse;
+    /**
+     * Closes the valve by running the {@link Relay} reverse. (Red LED on the relay,
+     * -12V)
+     */
+    public static final Value kCloseValue = Value.kReverse;
 
-        /**
-         * Opens the valve by running the {@link Relay} forward. (Green LED on the
-         * relay, +12V)
-         */
-        public static final Value kOpenValue = Value.kForward;
+    /**
+     * Opens the valve by running the {@link Relay} forward. (Green LED on the
+     * relay, +12V)
+     */
+    public static final Value kOpenValue = Value.kForward;
 
-        /**
-         * Sets both {@link Relay} outputs to ground, latching the solenoid in its last
-         * commanded state. (Orange LED on the relay)
-         */
-        public static final Value kOffValue = Value.kOff;
-    }
+    /**
+     * Sets both {@link Relay} outputs to ground, latching the solenoid in its last
+     * commanded state. (Orange LED on the relay)
+     */
+    public static final Value kOffValue = Value.kOff;
+  }
 
-    public static final class OIConstants {
-        public static final int kControllerPort = 0;
-    }
+  public static final class OIConstants {
+    public static final int kControllerPort = 0;
+  }
 }
