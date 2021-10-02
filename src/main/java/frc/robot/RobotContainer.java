@@ -76,7 +76,9 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Drive faster when the right bumper is held
     new JoystickButton(m_controller, Button.kBumperRight.value)
-        .whenPressed(() -> m_robotDrive.setMaxOutput(DriveConstants.kBoostCoefficient))
+        .whileHeld(() -> m_robotDrive
+            .setMaxOutput(DriveConstants.kNormalCoefficient + (m_controller.getTriggerAxis(Hand.kRight)
+                * (DriveConstants.kBoostCoefficient - DriveConstants.kNormalCoefficient))))
         .whenReleased(() -> m_robotDrive.setMaxOutput(DriveConstants.kNormalCoefficient));
 
     // Fires the left cannon when the A button is pressed (only if the left bumper
