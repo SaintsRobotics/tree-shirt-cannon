@@ -25,7 +25,7 @@ public final class Constants {
     public static final int kRightMotor2Port = 4;
 
     /** Coefficient to multiply the speed of the robot while not boosting */
-    public static final double kNormalCoefficient = 0.5;
+    public static final double kNormalCoefficient = 0.4;
 
     /** Coefficient to multiply the speed of the robot while boosting */
     public static final double kBoostCoefficient = 1.0;

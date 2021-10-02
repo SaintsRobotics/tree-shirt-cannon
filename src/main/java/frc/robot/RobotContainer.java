@@ -11,12 +11,11 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.RobotMap.CannonHardware;
 import frc.robot.RobotMap.DriveHardware;
+import frc.robot.commands.DriveCommand;
 import frc.robot.commands.SafetyCommand;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.CannonSubsystem;
@@ -61,10 +60,7 @@ public class RobotContainer {
     m_rightCannon.setName("Right Cannon");
 
     m_robotDrive.setDefaultCommand(
-        // A split-stick arcade command, with forward/backward controlled by the left
-        // hand, and turning controlled by the right.
-        new RunCommand(() -> m_robotDrive.arcadeDrive(-m_controller.getY(Hand.kLeft), m_controller.getX(Hand.kRight)),
-            m_robotDrive));
+            new DriveCommand(m_robotDrive, () -> -m_controller.getY(Hand.kLeft), () -> m_controller.getX(Hand.kRight), () -> m_controller.getTriggerAxis(Hand.kRight)));
   }
 
   /**
@@ -74,13 +70,6 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Drive faster when the right bumper is held
-    new JoystickButton(m_controller, Button.kBumperRight.value)
-        .whileHeld(() -> m_robotDrive
-            .setMaxOutput(DriveConstants.kNormalCoefficient + (m_controller.getTriggerAxis(Hand.kRight)
-                * (DriveConstants.kBoostCoefficient - DriveConstants.kNormalCoefficient))))
-        .whenReleased(() -> m_robotDrive.setMaxOutput(DriveConstants.kNormalCoefficient));
-
     // Fires the left cannon when the A button is pressed (only if the left bumper
     // is held)
     new JoystickButton(m_controller, Button.kA.value).whenPressed(m_leftShootCommand);
