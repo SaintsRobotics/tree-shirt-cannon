@@ -38,7 +38,7 @@ public class DriveCommand extends CommandBase {
 
   @Override
   public void execute() {
-    m_drive.arcadeDrive(m_fwd.getAsDouble(), m_rot.getAsDouble());
+    m_drive.arcadeDrive(m_fwd.getAsDouble(), m_rot.getAsDouble() * 1.5);
 
     m_drive.setMaxOutput(DriveConstants.kNormalCoefficient
         + (m_boost.getAsDouble() * (DriveConstants.kBoostCoefficient - DriveConstants.kNormalCoefficient)));
