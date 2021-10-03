@@ -10,11 +10,19 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.DriveSubsystem;
 
+/** Drives the robot using arcade drive (forward and rotation). Also has boost functionality. */
 public class DriveCommand extends CommandBase {
   private final DriveSubsystem m_drive;
   private final DoubleSupplier m_fwd, m_rot, m_boost;
 
-  /** Creates a new {@link DriveCommand}. */
+/**
+ * Creates a new {@link DriveCommand}.
+ * 
+ * @param drive The required subsystem.
+ * @param fwd Double supplier for the forward and backwards movement of the robot.
+ * @param rot Double supplier for the left and right rotation of the robot.
+ * @param boost Double supplier for the amount to boost the robot.
+ */
   public DriveCommand(DriveSubsystem drive, DoubleSupplier fwd, DoubleSupplier rot, DoubleSupplier boost) {
     m_drive = drive;
     addRequirements(m_drive);
