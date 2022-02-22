@@ -30,6 +30,10 @@ public final class RobotMap {
         new WPI_TalonSRX(DriveConstants.kRightMotor1Port), new WPI_TalonSRX(DriveConstants.kRightMotor2Port));
 
     public static final DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
+
+    static {
+      rightMotors.setInverted(true);
+    }
   }
 
   public static final class CannonHardware {
