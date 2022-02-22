@@ -7,8 +7,8 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import frc.robot.Constants.CannonConstants;
 import frc.robot.Constants.DriveConstants;
 
@@ -22,11 +22,11 @@ import frc.robot.Constants.DriveConstants;
 public final class RobotMap {
   public static final class DriveHardware {
     // The motors on the left side of the drive.
-    private static final SpeedControllerGroup leftMotors = new SpeedControllerGroup(
+    private static final MotorControllerGroup leftMotors = new MotorControllerGroup(
         new WPI_TalonSRX(DriveConstants.kLeftMotor1Port), new WPI_TalonSRX(DriveConstants.kLeftMotor2Port));
 
     // The motors on the right side of the drive.
-    private static final SpeedControllerGroup rightMotors = new SpeedControllerGroup(
+    private static final MotorControllerGroup rightMotors = new MotorControllerGroup(
         new WPI_TalonSRX(DriveConstants.kRightMotor1Port), new WPI_TalonSRX(DriveConstants.kRightMotor2Port));
 
     public static final DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);

@@ -7,7 +7,6 @@ package frc.robot;
 import java.util.function.BooleanSupplier;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -39,7 +38,7 @@ public class RobotContainer {
   // A supplier that returns whether the left bumper is currently held. The left
   // bumper acts as a safety that prevents the cannons from firing when not held
   // down
-  private final BooleanSupplier m_safetySupplier = () -> new JoystickButton(m_controller, Button.kBumperLeft.value)
+  private final BooleanSupplier m_safetySupplier = () -> new JoystickButton(m_controller, Button.kLeftBumper.value)
       .get();
 
   // Commands to shoot the left and right cannons, respectively, but only if the
@@ -60,7 +59,7 @@ public class RobotContainer {
     m_rightCannon.setName("Right Cannon");
 
     m_robotDrive.setDefaultCommand(
-            new DriveCommand(m_robotDrive, () -> -m_controller.getY(Hand.kLeft), () -> m_controller.getX(Hand.kRight), () -> m_controller.getTriggerAxis(Hand.kRight)));
+            new DriveCommand(m_robotDrive, () -> -m_controller.getLeftY(), () -> m_controller.getRightX(), () -> m_controller.getRightTriggerAxis()));
   }
 
   /**
