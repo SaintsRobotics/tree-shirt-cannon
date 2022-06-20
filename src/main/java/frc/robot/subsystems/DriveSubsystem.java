@@ -4,21 +4,26 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.DriveConstants;
 
 /** Subsystem that controls the drivetrain of the robot. */
 public class DriveSubsystem extends SubsystemBase {
-  private DifferentialDrive m_drive;
+  private final DifferentialDrive m_drive = new DifferentialDrive(
+      new MotorControllerGroup(
+          new WPI_TalonSRX(DriveConstants.kLeftMotor1Port), new WPI_TalonSRX(DriveConstants.kLeftMotor2Port)),
+      new MotorControllerGroup(
+          new WPI_TalonSRX(DriveConstants.kRightMotor1Port), new WPI_TalonSRX(DriveConstants.kRightMotor2Port)));
 
   /**
    * Creates a new {@link DriveSubsystem}.
-   * 
-   * @param differentialDrive the drivetrain of the robot
    */
-  public DriveSubsystem(DifferentialDrive differentialDrive) {
-    m_drive = differentialDrive;
+  public DriveSubsystem() {
   }
 
   /**

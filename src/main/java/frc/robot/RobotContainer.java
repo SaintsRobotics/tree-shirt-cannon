@@ -11,9 +11,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Constants.CannonConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.RobotMap.CannonHardware;
-import frc.robot.RobotMap.DriveHardware;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.SafetyCommand;
 import frc.robot.commands.ShootCommand;
@@ -31,9 +30,9 @@ public class RobotContainer {
   private final XboxController m_controller = new XboxController(OIConstants.kControllerPort);
 
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem(DriveHardware.differentialDrive);
-  private final CannonSubsystem m_leftCannon = new CannonSubsystem(CannonHardware.leftRelay);
-  private final CannonSubsystem m_rightCannon = new CannonSubsystem(CannonHardware.rightRelay);
+  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final CannonSubsystem m_leftCannon = new CannonSubsystem(CannonConstants.kLeftRelayPort);
+  private final CannonSubsystem m_rightCannon = new CannonSubsystem(CannonConstants.kRightRelayPort);
 
   // A supplier that returns whether the left bumper is currently held. The left
   // bumper acts as a safety that prevents the cannons from firing when not held

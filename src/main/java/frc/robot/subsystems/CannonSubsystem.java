@@ -15,10 +15,10 @@ public class CannonSubsystem extends SubsystemBase {
   /**
    * Creates a new {@link CannonSubsystem}.
    * 
-   * @param relay The {@link Relay} that opens and closes the valve.
+   * @param channel The channel of the {@link Relay}.
    */
-  public CannonSubsystem(Relay relay) {
-    m_relay = relay;
+  public CannonSubsystem(int channel) {
+    m_relay = new Relay(channel);
   }
 
   /**
