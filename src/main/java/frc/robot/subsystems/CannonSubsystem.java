@@ -44,6 +44,7 @@ public class CannonSubsystem extends SubsystemBase {
     }
   }
 
+  /** Shoots the cannon by opening and then closing the valve. */
   public void shoot() {
     m_timer.reset();
     m_timer.start();
