@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
@@ -44,7 +45,9 @@ public class RobotContainer {
     m_robotDrive.setDefaultCommand(
         new RunCommand(
             () -> {
-              m_robotDrive.arcadeDrive(-m_controller.getLeftY(), m_controller.getRightX());
+              m_robotDrive.arcadeDrive(
+                  MathUtil.applyDeadband(-m_controller.getLeftY(), OIConstants.kControllerDeadband),
+                  MathUtil.applyDeadband(m_controller.getRightX(), OIConstants.kControllerDeadband));
               m_robotDrive.setMaxOutput(
                   DriveConstants.kNormalCoefficient + m_controller.getRightTriggerAxis()
                       * (DriveConstants.kBoostCoefficient - DriveConstants.kNormalCoefficient));

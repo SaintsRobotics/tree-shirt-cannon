@@ -63,5 +63,6 @@ public final class Constants {
 
   public static final class OIConstants {
     public static final int kControllerPort = 0;
+    public static final double kControllerDeadband = 0.15;
   }
 }
