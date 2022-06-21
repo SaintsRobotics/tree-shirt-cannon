@@ -6,9 +6,9 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
@@ -19,6 +19,8 @@ public class DriveSubsystem extends SubsystemBase {
           new WPI_TalonSRX(DriveConstants.kLeftMotor1Port), new WPI_TalonSRX(DriveConstants.kLeftMotor2Port)),
       new MotorControllerGroup(
           new WPI_TalonSRX(DriveConstants.kRightMotor1Port), new WPI_TalonSRX(DriveConstants.kRightMotor2Port)));
+
+  private double m_fwd, m_rot, m_maxOutput;
 
   /**
    * Creates a new {@link DriveSubsystem}.
@@ -33,9 +35,9 @@ public class DriveSubsystem extends SubsystemBase {
    * @param rot the commanded rotation
    */
   public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwd, rot);
-    SmartDashboard.putNumber("Move Speed", fwd);
-    SmartDashboard.putNumber("Rotate Speed", rot);
+    m_fwd = fwd;
+    m_rot = rot;
+    m_drive.arcadeDrive(m_fwd, m_rot);
   }
 
   /**
@@ -45,7 +47,15 @@ public class DriveSubsystem extends SubsystemBase {
    * @param maxOutput the maximum output to which the drive will be constrained
    */
   public void setMaxOutput(double maxOutput) {
-    m_drive.setMaxOutput(maxOutput);
-    SmartDashboard.putNumber("Max Output", maxOutput);
+    m_maxOutput = maxOutput;
+    m_drive.setMaxOutput(m_maxOutput);
+  }
+
+  @Override
+  public void initSendable(SendableBuilder builder) {
+    super.initSendable(builder);
+    builder.addDoubleProperty("Move Speed", () -> m_fwd, null);
+    builder.addDoubleProperty("Rotation Speed", () -> m_rot, null);
+    builder.addDoubleProperty("Max Output", () -> m_maxOutput, null);
   }
 }
