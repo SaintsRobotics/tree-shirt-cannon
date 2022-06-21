@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import java.util.function.BooleanSupplier;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
@@ -15,8 +13,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.CannonConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.commands.SafetyCommand;
-import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.CannonSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -33,18 +29,6 @@ public class RobotContainer {
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final CannonSubsystem m_leftCannon = new CannonSubsystem(CannonConstants.kLeftRelayPort);
   private final CannonSubsystem m_rightCannon = new CannonSubsystem(CannonConstants.kRightRelayPort);
-
-  // A supplier that returns whether the left bumper is currently held. The left
-  // bumper acts as a safety that prevents the cannons from firing when not held
-  // down
-  private final BooleanSupplier m_safetySupplier = () -> new JoystickButton(m_controller, Button.kLeftBumper.value)
-      .get();
-
-  // Commands to shoot the left and right cannons, respectively, but only if the
-  // left bumper is held.
-  private final SafetyCommand m_leftShootCommand = new SafetyCommand(m_safetySupplier, new ShootCommand(m_leftCannon));
-  private final SafetyCommand m_rightShootCommand = new SafetyCommand(m_safetySupplier,
-      new ShootCommand(m_rightCannon));
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -76,15 +60,28 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Fires the left cannon when the A button is pressed (only if the left bumper
     // is held)
-    new JoystickButton(m_controller, Button.kA.value).whenPressed(m_leftShootCommand);
+    new JoystickButton(m_controller, Button.kA.value).whenPressed(() -> {
+      if (m_controller.getLeftBumper()) {
+        m_leftCannon.shoot();
+      }
+    });
 
     // Fires the right cannon when the B button is pressed (only if the left bumper
     // is held)
-    new JoystickButton(m_controller, Button.kB.value).whenPressed(m_rightShootCommand);
+    new JoystickButton(m_controller, Button.kB.value).whenPressed(() -> {
+      if (m_controller.getLeftBumper()) {
+        m_rightCannon.shoot();
+      }
+    });
 
     // Fires both cannons when the X button is pressed (only if the left bumper is
     // held)
-    new JoystickButton(m_controller, Button.kX.value).whenPressed(m_leftShootCommand).whenPressed(m_rightShootCommand);
+    new JoystickButton(m_controller, Button.kX.value).whenPressed(() -> {
+      if (m_controller.getLeftBumper()) {
+        m_leftCannon.shoot();
+        m_rightCannon.shoot();
+      }
+    });
   }
 
   /**
