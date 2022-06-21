@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /** Subsystem that controls a single cannon of the robot. */
 public class CannonSubsystem extends SubsystemBase {
-  private Relay m_relay;
+  private final Relay m_relay;
 
   /**
    * Creates a new {@link CannonSubsystem}.

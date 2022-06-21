@@ -38,9 +38,10 @@ public class DriveCommand extends CommandBase {
 
   @Override
   public void execute() {
-    m_drive.arcadeDrive(m_fwd.getAsDouble(), m_rot.getAsDouble() * 1.5);
+    m_drive.arcadeDrive(m_fwd.getAsDouble(), m_rot.getAsDouble());
 
+    // Scales the max speed between the normal coefficient and boost coefficient.
     m_drive.setMaxOutput(DriveConstants.kNormalCoefficient
-        + (m_boost.getAsDouble() * (DriveConstants.kBoostCoefficient - DriveConstants.kNormalCoefficient)));
+        + m_boost.getAsDouble() * (DriveConstants.kBoostCoefficient - DriveConstants.kNormalCoefficient));
   }
 }

@@ -11,8 +11,8 @@ import frc.robot.subsystems.CannonSubsystem;
 
 /** Opens, then closes the valve, causing the cannon to shoot. */
 public class ShootCommand extends CommandBase {
-  private CannonSubsystem m_cannon;
-  private Timer m_timer;
+  private final CannonSubsystem m_cannon;
+  private final Timer m_timer;
 
   /**
    * Creates a new {@link ShootCommand}.

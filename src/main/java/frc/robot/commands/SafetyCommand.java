@@ -11,25 +11,25 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 /** Prevents a command from running if the condition is not met. */
 public class SafetyCommand extends InstantCommand {
-  private BooleanSupplier m_safetySupplier;
-  private CommandBase m_command;
+  private final BooleanSupplier m_safety;
+  private final CommandBase m_command;
 
   /**
    * Creates a new {@link SafetyCommand}.
    * 
-   * @param safetySupplier Safety to prevent a command from running if
-   *                       {@link BooleanSupplier#getAsBoolean getAsBoolean}
-   *                       returns false.
-   * @param command        The command to run.
+   * @param safety  Safety to prevent a command from being scheduled if
+   *                {@link BooleanSupplier#getAsBoolean getAsBoolean}
+   *                returns false.
+   * @param command The command to schedule.
    */
-  public SafetyCommand(BooleanSupplier safetySupplier, CommandBase command) {
-    m_safetySupplier = safetySupplier;
+  public SafetyCommand(BooleanSupplier safety, CommandBase command) {
+    m_safety = safety;
     m_command = command;
   }
 
   @Override
   public void initialize() {
-    if (m_safetySupplier.getAsBoolean()) {
+    if (m_safety.getAsBoolean()) {
       m_command.schedule();
     }
   }
