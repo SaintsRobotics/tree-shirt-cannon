@@ -25,8 +25,14 @@ public class CannonSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    if (m_timer.get() < CannonConstants.kOnDuration) {
-      m_relay.set(CannonConstants.kOpenValue); // FIRE!
+    // The timer defaults to 0 when the robot starts so it needs to be greater than
+    // 0 before we should shoot.
+    if (m_timer.get() == 0) {
+      m_relay.set(CannonConstants.kOffValue);
+    }
+    // Opens the valve and fires the cannon.
+    else if (m_timer.get() < CannonConstants.kOnDuration) {
+      m_relay.set(CannonConstants.kOpenValue);
     }
     // Closes the valve after 1 second has passed.
     else if (m_timer.get() < 2 * CannonConstants.kOnDuration) {
