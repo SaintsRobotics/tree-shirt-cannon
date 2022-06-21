@@ -30,7 +30,6 @@ import frc.robot.subsystems.DriveSubsystem;
 public class RobotContainer {
   private final XboxController m_controller = new XboxController(OIConstants.kControllerPort);
 
-  // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final CannonSubsystem m_leftCannon = new CannonSubsystem(CannonConstants.kLeftRelayPort);
   private final CannonSubsystem m_rightCannon = new CannonSubsystem(CannonConstants.kRightRelayPort);
@@ -51,7 +50,6 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // Configure the button bindings
     configureButtonBindings();
 
     // Subsystems can not have the same name in the simulator.
