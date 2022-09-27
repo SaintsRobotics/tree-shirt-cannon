@@ -47,7 +47,7 @@ public class RobotContainer {
             () -> {
               m_robotDrive.arcadeDrive(
                   scaleInput(MathUtil.applyDeadband(-m_controller.getLeftY(), OIConstants.kControllerDeadband)),
-                  scaleInput(MathUtil.applyDeadband(m_controller.getRightX(), OIConstants.kControllerDeadband));
+                  scaleInput(MathUtil.applyDeadband(m_controller.getRightX(), OIConstants.kControllerDeadband)));
               m_robotDrive.setMaxOutput(
                   DriveConstants.kNormalCoefficient + m_controller.getRightTriggerAxis()
                       * (DriveConstants.kBoostCoefficient - DriveConstants.kNormalCoefficient));
