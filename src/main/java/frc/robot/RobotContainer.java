@@ -41,13 +41,13 @@ public class RobotContainer {
     m_leftCannon.setName("Left Cannon");
     m_rightCannon.setName("Right Cannon");
 
-    // Command that drives with joysticks and boosts with right trigger. 
+    // Command that drives with joysticks and boosts with right trigger.
     m_robotDrive.setDefaultCommand(
         new RunCommand(
             () -> {
               m_robotDrive.arcadeDrive(
                   scaleInput(MathUtil.applyDeadband(-m_controller.getLeftY(), OIConstants.kControllerDeadband)),
-                  scaleInput(MathUtil.applyDeadband(m_controller.getRightX(), OIConstants.kControllerDeadband));
+                  scaleInput(MathUtil.applyDeadband(m_controller.getRightX(), OIConstants.kControllerDeadband)));
               m_robotDrive.setMaxOutput(
                   DriveConstants.kNormalCoefficient + m_controller.getRightTriggerAxis()
                       * (DriveConstants.kBoostCoefficient - DriveConstants.kNormalCoefficient));
@@ -97,11 +97,11 @@ public class RobotContainer {
   }
 
   /**
-  * Scales an input to allow for finer control at low speeds.
-  *
-  * @return scaled input
-  */
-  private double oddSquare(double input) {
+   * Scales an input to allow for finer control at low speeds.
+   *
+   * @return scaled input
+   */
+  private double scaleInput(double input) {
     return Math.abs(input) * input;
   }
 }
