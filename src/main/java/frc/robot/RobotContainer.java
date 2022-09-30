@@ -46,8 +46,8 @@ public class RobotContainer {
         new RunCommand(
             () -> {
               m_robotDrive.arcadeDrive(
-                  scaleInput(MathUtil.applyDeadband(-m_controller.getLeftY(), OIConstants.kControllerDeadband)),
-                  scaleInput(MathUtil.applyDeadband(m_controller.getRightX(), OIConstants.kControllerDeadband)));
+                  oddSquare(MathUtil.applyDeadband(-m_controller.getLeftY(), OIConstants.kControllerDeadband)),
+                  oddSquare(MathUtil.applyDeadband(m_controller.getRightX(), OIConstants.kControllerDeadband)));
               m_robotDrive.setMaxOutput(
                   DriveConstants.kNormalCoefficient + m_controller.getRightTriggerAxis()
                       * (DriveConstants.kBoostCoefficient - DriveConstants.kNormalCoefficient));
@@ -101,7 +101,7 @@ public class RobotContainer {
   *
   * @return scaled input
   */
-  private double scaleInput(double input) {
+  private double oddSquare(double input) {
     return Math.abs(input) * input;
   }
 }
