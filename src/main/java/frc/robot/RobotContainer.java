@@ -41,7 +41,7 @@ public class RobotContainer {
     m_leftCannon.setName("Left Cannon");
     m_rightCannon.setName("Right Cannon");
 
-    // Command that drives with joysticks and boosts with right trigger. 
+    // Command that drives with joysticks and boosts with right trigger.
     m_robotDrive.setDefaultCommand(
         new RunCommand(
             () -> {
@@ -97,10 +97,10 @@ public class RobotContainer {
   }
 
   /**
-  * Scales an input to allow for finer control at low speeds.
-  *
-  * @return scaled input
-  */
+   * Scales an input to allow for finer control at low speeds.
+   *
+   * @return scaled input
+   */
   private double oddSquare(double input) {
     return Math.abs(input) * input;
   }
