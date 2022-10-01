@@ -14,10 +14,15 @@ import frc.robot.Constants.DriveConstants;
 
 /** Subsystem that controls the drivetrain of the robot. */
 public class DriveSubsystem extends SubsystemBase {
-  private final MotorControllerGroup m_rightMotors = new MotorControllerGroup(
-      new WPI_TalonSRX(DriveConstants.kRightMotor1Port), new WPI_TalonSRX(DriveConstants.kRightMotor2Port));
+  private final MotorControllerGroup m_leftMotors = new MotorControllerGroup(
+      new WPI_TalonSRX(DriveConstants.kLeftMotor1Port),
+      new WPI_TalonSRX(DriveConstants.kLeftMotor2Port));
 
-  private final DifferentialDrive m_drive;
+  private final MotorControllerGroup m_rightMotors = new MotorControllerGroup(
+      new WPI_TalonSRX(DriveConstants.kRightMotor1Port),
+      new WPI_TalonSRX(DriveConstants.kRightMotor2Port));
+
+  private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
 
   private double m_fwd, m_rot, m_maxOutput;
 
@@ -26,10 +31,6 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public DriveSubsystem() {
     m_rightMotors.setInverted(true);
-    m_drive = new DifferentialDrive(
-        new MotorControllerGroup(
-            new WPI_TalonSRX(DriveConstants.kLeftMotor1Port), new WPI_TalonSRX(DriveConstants.kLeftMotor2Port)),
-        m_rightMotors);
   }
 
   /**
