@@ -38,9 +38,10 @@ public class CannonSubsystem extends SubsystemBase {
     else if (m_timer.get() < 2 * CannonConstants.kOnDuration) {
       m_relay.set(CannonConstants.kCloseValue);
     }
-    // Turns the relay off 1 second after the valve closes.
+    // Resets the timer 1 second after the valve closes, which turns off the relay.
     else {
-      m_relay.set(CannonConstants.kOffValue);
+      m_timer.stop();
+      m_timer.reset();
     }
   }
 
