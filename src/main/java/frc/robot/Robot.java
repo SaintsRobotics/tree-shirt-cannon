@@ -31,24 +31,12 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void disabledInit() {
-  }
-
-  @Override
-  public void disabledPeriodic() {
-  }
-
-  @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-  }
-
-  @Override
-  public void autonomousPeriodic() {
   }
 
   @Override
@@ -59,15 +47,7 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void teleopPeriodic() {
-  }
-
-  @Override
   public void testInit() {
     CommandScheduler.getInstance().cancelAll();
-  }
-
-  @Override
-  public void testPeriodic() {
   }
 }
